@@ -1,0 +1,152 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+
+    <div id="pagePanel">
+
+      <div ng-repeat="item in items">
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">details</span></td>
+      </tr>
+<!--      <tr>
+		<td><b>id</b></td>
+		<td>{{ item.id }}</td>
+      </tr> -->
+      <tr>
+		<td><b>name</b></td>
+		<td>{{ item.vendor_name }}</td>
+      </tr>
+      <tr>
+		<td><b>address</b></td>
+		<td>{{ item.vendor_addr1 }}</td>
+      </tr>
+      <tr>
+		<td></td>
+		<td>{{ item.vendor_addr2 }}</td>
+      </tr>
+      <tr>
+		<td></td>
+		<td>{{ item.vendor_addr3 }}</td>
+      </tr>
+      <tr>
+		<td></td>
+		<td>{{ item.vendor_addr4 }}</td>
+      </tr>
+      <tr>
+		<td><b>postcode</b></td>
+		<td>{{ item.vendor_postcode }}</td>
+      </tr>
+      <tr>
+		<td><b>phone</b></td>
+		<td>{{ item.vendor_phone }}</td>
+      </tr>
+      <tr>
+		<td><b>fax</b></td>
+		<td>{{ item.vendor_fax }}</td>
+      </tr>
+      <tr>
+		<td><b>email</b></td>
+		<td>{{ item.vendor_email }}</td>
+      </tr>
+      <tr>
+		<td><b>location</b></td>
+		<td>{{ item.location_name }}</td>
+      </tr>
+      <tr>
+        <td><b>actions</b></td>
+        <td>
+        
+          <div>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.id);">edit</button>
+          </div>
+        
+        </td>
+      </tr>
+      </table>
+      </div>
+      
+	</div>
+	
+	
+	<div id="pageEditPanel" class="uiElementDisplayNone">
+
+      <form name="pageForm">
+      <input type="hidden" id="__id" value="0">
+      </form>
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">details</span></td>
+      </tr>
+
+      <tr>
+        <td><b>name</b></td>
+        <td><input id="vendor_name" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+      </tr>
+      <tr>
+        <td><b>address</b></td>
+        <td><input id="vendor_addr1" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input id="vendor_addr2" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input id="vendor_addr3" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input id="vendor_addr4" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+      </tr>
+      <tr>
+        <td><b>postcode</b></td>
+        <td><input id="vendor_postcode" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="10" /></td>
+      </tr>
+      <tr>
+        <td><b>phone</b></td>
+        <td><input id="vendor_phone" class="uiFieldCore uiSmallText" type="text" maxlength="20" size="20" /></td>
+      </tr>
+      <tr>
+        <td><b>fax</b></td>
+        <td><input id="vendor_fax" class="uiFieldCore uiSmallText" type="text" maxlength="20" size="20" /></td>
+      </tr>
+      <tr>
+        <td><b>email</b></td>
+        <td><input id="vendor_email" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+      </tr>
+      <tr>
+        <td><b>location</b></td>
+        <td>
+          <select id="location_id" class="uiSmallText uiDdlCore">
+            <option value="1">Dunnington</option>
+            <option value="2">Harrogate</option>
+            <option value="3">Leeds</option>
+            <option value="4">Wetherby</option>
+            <option value="5">York</option>
+            <option value="6">Ilkley</option>
+            <option value="7">Starbeck</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+        </td>
+      </tr>
+      </table>
+
+    </div>	
+
+
+  </div>
+
+</div>
+
+</div>

@@ -1,0 +1,105 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+
+	<div id="pagePanel">
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="4"><span class="uiBannerText_BLACK">products</span></td>
+      </tr>
+      <tr>
+        <td><b>id</b></td>
+        <td><b>description</b></td>
+        <td><b>type</b></td>
+        <td><b>active</b></td>
+        <td><b>actions</b></td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="newItem();">new</button>
+        </td>
+      </tr>
+
+      <tr ng-repeat="item in items">
+        <td>{{ item.vendor_product_id }}</td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.product_type_name }}</td>
+        <td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
+
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.ruid);">edit</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" onclick="">view</button>
+        </td>
+
+      </tr>
+
+      </table>
+
+	</div>
+
+
+	<div id="pageEditPanel" class="uiElementDisplayNone">
+
+      <form name="pageForm">
+      <input type="hidden" id="__id" value="0">
+      </form>
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">products</span></td>
+      </tr>
+
+      <tr>
+        <td><b>id</b></td>
+        <td>
+          <input id="vendor_product_id" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="10" />
+        </td>
+      </tr>
+      <tr>
+        <td><b>name</b></td>
+        <td>
+          <input id="product_name" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="30" />
+        </td>
+      </tr>
+      <tr>
+        <td><b>description</b></td>
+        <td>
+          <textarea id="product_desc" rows="4" cols="40" class="uiSmallText uiFieldCore"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><b>type</b></td>
+        <td>
+          <select id="product_type_id" class="uiSmallText uiDdlCore">
+            <option value="1">Draft</option>
+            <option value="2">Bottle</option>
+            <option value="3">Optic</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><b>active</b></td>
+        <td><input id="is_active" type="checkbox"></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+        </td>
+      </tr>
+      </table>
+
+    </div>	
+
+
+
+
+
+  </div>
+
+</div>
+
+</div>

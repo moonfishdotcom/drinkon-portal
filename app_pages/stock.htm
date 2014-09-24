@@ -1,0 +1,40 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+	<div id="pagePanel">
+
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr><td><b>id</b></td><td><b>product</b></td><td><b>type</b></td><td><b>status</b></td><td><b>actions</b></td></tr>
+
+        <tr ng-repeat="item in items">
+          <td>{{ item.ruid }}</td>
+          <td>{{ item.product_name }}</td>
+          <td>{{ item.product_type_name }}</td>
+          <td>{{ item.product_status_id === "1" ? "Available" : "Unavailable"}}</td>
+
+          <td>
+
+            <div style="margin-top:2px;">
+              <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonYes uiLargerText': item.product_status_id == '0', 'uiElementDisplayNone': item.product_status_id != '0' }" ng-click="stockPutOn(item.ruid);">put on</button>
+            </div>
+
+            <div style="margin-top:2px;">
+              <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonNo uiLargerText': item.product_status_id == '1', 'uiElementDisplayNone': item.product_status_id != '1' }" ng-click="stockTakeOff(item.ruid);">take off</button>
+            </div>
+
+          </td>
+
+        </tr>
+
+        </table>
+
+
+	</div>
+  </div>
+
+</div>
+
+</div>

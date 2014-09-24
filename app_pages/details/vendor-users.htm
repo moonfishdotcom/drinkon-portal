@@ -1,0 +1,99 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+	
+	<div id="pagePanel">
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="5"><span class="uiBannerText_BLACK">users</span></td>
+        <td align="right"><button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="newItem();">new</button></td>
+      </tr>
+
+      <tr>
+        <td><b>id</b></td>
+        <td><b>name</b></td>
+        <td><b>known as</b></td>
+        <td><b>pattern</b></td>
+        <td><b>active</b></td>
+        <td><b>actions</b></td>
+      </tr>
+
+      <tr ng-repeat="item in items">
+		<td>{{ item.vendor_user_id }}</td>
+		<td>{{ item.user_name }}</td>
+		<td>{{ item.user_known_as }}</td>
+		<td>{{ item.pattern_name }}</td>
+		<td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
+		
+		<td>
+
+          <div>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.ruid);">edit</button>
+          </div>
+		
+		</td>
+		
+      </tr>
+
+      </table>
+      
+	</div>
+	
+	
+	<div id="pageEditPanel" class="uiElementDisplayNone">
+
+      <form name="pageForm">
+      <input type="hidden" id="__id" value="0">
+      </form>
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">users</span></td>
+      </tr>
+
+      <tr>
+        <td><b>id</b></td>
+        <td><input id="vendor_user_id" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="10" /></td>
+      </tr>
+      <tr>
+        <td><b>name</b></td>
+        <td><input id="user_name" class="uiFieldCore uiSmallText" type="text" maxlength="50" size="30" /></td>
+      </tr>
+      <tr>
+        <td><b>known as</b></td>
+        <td><input id="user_known_as" class="uiFieldCore uiSmallText" type="text" maxlength="50" size="30" /></td>
+      </tr>
+      <tr>
+        <td><b>pattern</b></td>
+        <td>
+          <select id="user_pattern" class="uiSmallText uiDdlCore">
+            <option value="0">Please choose a pattern...</option>
+            <option value="1">Mon-Sat 6pm to 12pm</option>
+            <option value="2">Mon-Fri 4pm to 10pm</option>
+            <option value="3">Sat-Sun 8pm to 12pm</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><b>active</b></td>
+        <td><input id="is_active" type="checkbox"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+        </td>
+      </tr>
+      </table>
+
+    </div>	
+	
+  </div>
+
+</div>
+
+</div>

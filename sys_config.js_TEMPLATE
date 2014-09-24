@@ -1,0 +1,5 @@
+var sysconfig = {
+  debugMode       : "Y",
+  site_url_base   : "finarfin/drinkon",
+  web_protocol    : "http"
+};

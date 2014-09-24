@@ -1,0 +1,33 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+	<div id="pagePanel">
+
+	  <div ng-repeat="item in items">
+
+        <table cellspacing="0" cellpadding="5" width="100%" class="uiLargerText">
+        <tr>
+          <td colspan="2">
+			<span class="uiNormalText"><b>{{ item.review_head }}</b></span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+			<span class="uiNormalText">{{ item.review_body }}</span>
+          </td>
+          <td>
+			<span class="uiNormalText">{{ item.review_score }}</span>
+          </td>
+        </tr>
+        </table>
+
+	  </div>
+
+	</div>
+  </div>
+
+</div>
+
+</div>

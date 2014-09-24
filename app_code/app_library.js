@@ -1,0 +1,2 @@
+//Photography Javascript library functions
+

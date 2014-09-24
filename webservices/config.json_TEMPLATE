@@ -1,0 +1,10 @@
+{
+    "config": [
+        {
+        "db_server": "@SERVERNAME@",
+        "db_name": "@DATABASENAME@",
+        "db_user": "@DBUSERNAME@",
+        "db_pass": "@DBPASSWORD@"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "config": [
+        {
+        "db_server": "localhost",
+        "db_name": "drinkon",
+        "db_user": "root",
+        "db_pass": "Eye5w1deshut"
+        }
+    ]
+}

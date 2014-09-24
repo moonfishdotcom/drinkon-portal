@@ -1,0 +1,458 @@
+.uiPageLayout
+{
+  font-family:Ubuntu, Verdana;
+  margin:0;
+  padding:0;
+  background-color:#FFFFFF;
+  height:100%;
+  min-height:100%;
+}
+
+.uiElementDisplayNone
+{
+  display:none;
+}
+
+
+
+/* Text styles */
+.uiSmallText
+{
+  font-size:1.0em;
+  color: #000000;
+}
+
+.uiNormalText
+{
+  font-size: 1.2em;
+  color: #000000;
+}
+
+.uiLargerText
+{
+  font-size:1.4em;
+  color: #000000;
+}
+
+.uiBigText
+{
+  font-size:1.6em;
+  color: #000000;
+}
+
+.uiBannerText_WHITE
+{
+  font-size:2.0em;
+  color: #FFFFFF;
+}
+
+.uiBannerText_DARKGREY
+{
+  font-size:2.0em;
+  color: #666666;
+}
+
+.uiBannerText_BLACK
+{
+  font-size:2.0em;
+  color: #000000;
+}
+
+.uiBannerText_RED
+{
+  font-size:2.0em;
+  color: #DC3000;
+}
+
+
+/* Text colours */
+.uiDisabledText
+{
+  color: #BBBBBB;
+}
+
+.uiMandatoryText
+{
+  color: #DC3000;
+}
+
+
+/* Link styles */
+.uiLink_WHITE
+{
+  color: #FFFFFF;
+}
+.uiLink_WHITE:link 
+{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.uiLink_WHITE:visited
+{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.uiLink_WHITE:hover
+{
+  color: #DDDDDD;
+  text-decoration: none;
+}
+
+.uiMandatoryText
+{
+  color: #DC3000;
+}
+
+
+.uiLink_GREEN
+{
+  color: #3BC500;
+}
+.uiLink_GREEN:link 
+{
+  color: #3BC500;
+  text-decoration: none;
+}
+.uiLink_GREEN:visited
+{
+  color: #3BC500;
+  text-decoration: none;
+}
+.uiLink_GREEN:hover
+{
+  color: #3BC500;
+  text-decoration: none;
+}
+
+
+.uiLink_RED
+{
+  color: #DC3000;
+}
+.uiLink_RED:link 
+{
+  color: #DC3000;
+  text-decoration: none;
+}
+.uiLink_RED:visited
+{
+  color: #DC3000;
+  text-decoration: none;
+}
+.uiLink_RED:hover
+{
+  color: #DC3000;
+  text-decoration: none;
+}
+
+
+.uiLink_BLUE
+{
+  color: #2E5894;
+}
+.uiLink_BLUE:link 
+{
+  color: #2E5894;
+  text-decoration: none;
+}
+.uiLink_BLUE:visited
+{
+  color: #2E5894;
+  text-decoration: none;
+}
+.uiLink_BLUE:hover
+{
+  color: #2E5894;
+  text-decoration: none;
+}
+
+
+.uiLink_DARKGREY
+{
+  color: #666666;
+}
+.uiLink_DARKGREY:link 
+{
+  color: #666666;
+  text-decoration: none;
+}
+.uiLink_DARKGREY:visited
+{
+  color: #666666;
+  text-decoration: none;
+}
+.uiLink_DARKGREY:hover
+{
+  color: #AAAAAA;
+  text-decoration: none;
+}
+
+
+.uiLink_BLACK
+{
+  color: #000000;
+}
+.uiLink_BLACK:link 
+{
+  color: #000000;
+  text-decoration: none;
+}
+.uiLink_BLACK:visited
+{
+  color: #000000;
+  text-decoration: none;
+}
+.uiLink_BLACK:hover
+{
+  color: #666666;
+  text-decoration: none;
+}
+
+
+
+/* Button styles */
+.uiButtonBase
+{
+  padding:5px 10px 10px 10px;
+  margin-right:5px;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.uiButtonMedium
+{
+  height:50px;
+  width:150px;
+}
+
+.uiButtonLarge
+{
+  height:50px;
+  width:180px;
+}
+
+.uiButtonHome
+{
+  float:left;
+  background-color:#EEEEEE;
+  border:1px solid #EEEEEE;
+}
+
+.uiButtonOrders
+{
+  float:left;
+  background-color:#EDDA74;
+  border:1px solid #EDDA74;
+}
+
+.uiButtonStock
+{
+  float:left;
+  background-color:#FBB117;
+  border:1px solid #FBB117;
+}
+
+.uiButtonProducts
+{
+  float:left;
+  background-color:#03C03C;
+  border:1px solid #03C03C;
+}
+
+.uiButtonSocial
+{
+  float:left;
+  background-color:#966FD6;
+  border:1px solid #966FD6;
+}
+
+.uiButtonDetails
+{
+  float:left;
+  background-color:#B6B6B4;
+  border:1px solid #B6B6B4;
+}
+
+.uiButtonEdit
+{
+  float:left;
+  background-color:#EDDA74;
+  border:1px solid #EDDA74;
+}
+
+.uiButtonAccept
+{
+  float:right;
+  background-color:#03C03C;
+  border:1px solid #03C03C;
+}
+
+.uiButtonDone
+{
+  float:right;
+  background-color:#AAAAAA;
+  border:1px solid #AAAAAA;
+}
+
+.uiButtonYes
+{
+  float:left;
+  background-color:#03C03C;
+  border:1px solid #03C03C;
+}
+
+.uiButtonNo
+{
+  float:left;
+  background-color:#F62817;
+  border:1px solid #F62817;
+}
+
+.uiButtonLogout
+{
+  float:left;
+  background-color:#F62817;
+  border:1px solid #F62817;
+}
+
+.uiDetailsButton
+{
+  float:left; 
+  margin-bottom:4px; 
+  height:100px; 
+  width:225px; 
+  background-color:#B6B6B4; 
+  border:1px solid #B6B6B4; 
+}
+
+
+/* Container styles */
+.uiPageContainer
+{
+  padding-top:25px;
+  padding-left:10px;
+  width:99%;
+  padding-bottom:50px;
+}
+
+.uiPageInnerContainer
+{
+  padding-top:5px;
+}
+
+.uiDataItemContainer
+{
+  clear:both;
+  padding:5px 5px 5px 5px;
+}
+
+
+.uiItemContainer
+{
+  width:90%;
+  border:1px #CCCCCC solid;
+  background-color:#EEEEEE;
+  padding:5px 5px 5px 5px;
+}
+
+
+.uiOpenOrderContainer
+{
+  border:2px solid #EEEEEE;
+  border-radius:5px;
+  background-color:#EEEEEE;
+  margin-bottom:20px;
+  margin-right:5px;
+}
+
+.uiAcceptedOrderContainer
+{
+  border:2px solid #88CC88;
+  border-radius:5px;
+  background-color:#88CC88;
+  margin-bottom:20px;
+  margin-right:5px;
+}
+
+.uiCompletedOrderContainer
+{
+  border:2px solid #708EA4;
+  border-radius:5px;
+  background-color:#708EA4;
+  margin-bottom:20px;
+  margin-right:5px;
+}
+
+
+
+/* Panel styles */
+.uiHeadPanel
+{
+  width:100%;
+  height:90px;
+  background-color:#EEEEEE;
+}
+
+.uiHeadPanelActions
+{
+  width:100%;
+  background-color:#666666;
+}
+
+
+.uiLogonPanel
+{
+  position:fixed;
+  top:50%;
+  height:280px;
+  margin-top:-170px;
+  left:50%;
+  margin-left:-290px;
+  width:540px;
+  padding:10px;
+  border:5px solid #91A3B0;
+  border-radius:10px;
+  background-color:#FFFFFF;
+}
+
+
+
+/* Item styles */
+.uiMenuItem
+{
+  height:inherit;
+  vertical-align:middle;
+  padding-left:15px;
+}
+
+.uiFooterItem
+{
+  padding-left:2px;
+}
+
+
+
+/* Form element styles */
+.uiDdlCore
+{
+  font-family:Ubuntu,Verdana;
+  padding:2px;
+  line-height:20px;
+  border:solid 1px #DDDDDD;
+  border-radius:0;
+}
+
+.uiFieldCore
+{
+  font-family:Ubuntu,Verdana;
+  padding:2px;
+  line-height:20px;
+  border:solid 1px #DDDDDD;
+  border-radius:0;
+}
+
+
+
+
+
+/* Archives */

@@ -1,0 +1,5 @@
+{"data":[
+  {"id":"1","pattern_name":"Mon-Sat 6pm to 12pm","is_active":"1"},
+  {"id":"2","pattern_name":"Mon-Fri 4pm to 10pm","is_active":"1"},
+  {"id":"3","pattern_name":"Sat-Sun 8pm to 12pm","is_active":"1"}
+]}

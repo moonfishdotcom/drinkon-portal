@@ -1,0 +1,68 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+	<div id="pagePanel">
+
+
+	  <div ng-repeat="item in items">
+
+        <table cellspacing="0" cellpadding="5" width="80%" align="center" class="uiLargerText">
+
+        <tr><td><span class='uiBannerText_BLACK'>CONFIRM - Completion</span></td></tr>
+
+        <tr>
+          <td colspan="1">
+			<span class="uiNormalText">
+			  Order No <b>{{ item.order_number }}</b> for <b>{{ item.order_cust_name }}</b> at <b>{{ item.order_reqd_for }}</b>
+			</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+          
+            <table width="98%" cellspacing="5" cellpadding="5">
+            <tr ng-repeat="itemline in item.order">
+              <td width="5%" align="left">{{ itemline.product_id }}</td>
+              <td width="60%" align="left">{{ itemline.product_name }}</td>
+              <td width="25%" align="left">{{ itemline.product_qty }} x {{ itemline.product_measure_name }}</td>
+              <td width="10%" align="right">£ {{ (itemline.product_qty * itemline.product_unit_price) | number:2 }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td align="right"><b>Total</b></td>
+              <td align="right">£ {{ item.order_total }}</td>
+            </tr>
+            </table>          
+          
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+
+          <div>
+            <button ng-click="completeOrder(item.id);" class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText">yes</button>
+          </div>
+
+          <div>
+            <button onclick="window.location.href='#orders';" class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText">no</button>
+          </div>
+
+          </td>
+        </tr>
+
+        </table>
+
+	  </div>
+
+
+	</div>
+  </div>
+
+</div>
+
+</div>

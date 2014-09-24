@@ -1,0 +1,66 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+	<div id="pagePanel">
+
+
+	  <div ng-repeat="item in items">
+
+        <div ng-class="{ 'uiOpenOrderContainer': item.order_status_id == '1', 'uiAcceptedOrderContainer': item.order_status_id == '2', 'uiCompletedOrderContainer': item.order_status_id == '3' }">
+        <table cellspacing="0" cellpadding="5" width="100%" class="uiLargerText">
+        <tr>
+          <td colspan="2">
+			<span class="uiNormalText">
+			  Order No <b>{{ item.order_number }}</b> for <b>{{ item.order_cust_name }}</b> at <b>{{ item.order_reqd_for }}</b>
+			</span>
+          </td>
+        </tr>
+
+        <tr style="background-color:#FFFFFF;">
+          <td colspan="2">
+            <table width="98%" cellspacing="5" cellpadding="5">
+            <tr ng-repeat="itemline in item.order">
+              <td width="5%" align="left">{{ itemline.product_id }}</td>
+              <td width="60%" align="left">{{ itemline.product_name }}</td>
+              <td width="25%" align="left">{{ itemline.product_qty }} x {{ itemline.product_measure_name }}</td>
+              <td width="10%" align="right">£ {{ (itemline.product_qty * itemline.product_unit_price) | number:2 }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td align="right"><b>Total</b></td>
+              <td align="right">£ {{ item.order_total }}</td>
+            </tr>
+            </table>          
+          </td>
+        </tr>
+
+        <tr>
+          <td><b>{{ item.order_owner_id === "0" ? "This order is Unassigned" : "This order is assigned to " + item.user_known_as }}</b></td>
+
+          <td>
+            <div style="margin-top:2px;">
+              <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonAccept uiLargerText': item.order_status_id == '1', 'uiElementDisplayNone': item.order_status_id != '1' }" ng-click="moveAcceptOrder(item.id);">accept</button>
+            </div>
+
+            <div style="margin-top:2px;">
+              <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonDone uiLargerText': item.order_status_id == '2', 'uiElementDisplayNone': item.order_status_id != '2' }" ng-click="moveCompleteOrder(item.id);">done</button>
+            </div>
+          </td>
+        </tr>
+
+
+        </table>
+	    </div>
+
+	  </div>
+
+
+	</div>
+  </div>
+
+</div>
+
+</div>

@@ -1,0 +1,5 @@
+{"data":[
+  {"id":"10","user_name":"John Smith","user_known_as":"John","user_pattern":"1","user_pattern_name":"Mon-Sat 6pm to 12pm","is_active":"1"},
+  {"id":"11","user_name":"Lucy Harrington","user_known_as":"Lucy","user_pattern":"2","user_pattern_name":"Mon-Fri 4pm to 10pm","is_active":"1"},
+  {"id":"12","user_name":"Ben Lacey","user_known_as":"Ben","user_pattern":"3","user_pattern_name":"Sat-Sun 8pm to 12pm","is_active":"0"}
+]}

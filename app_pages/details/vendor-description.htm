@@ -1,0 +1,90 @@
+<div class="uiPageContainer">
+
+<div class="uiPageInnerContainer">
+
+  <div style="float:left; width:100%;">
+
+	<div id="pagePanel">
+
+      <div ng-repeat="item in items">
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">description</span></td>
+      </tr>
+
+      <tr>
+
+        <td valign="top" width="50%">
+
+          <!-- column 1 -->
+          <table>
+          <tr>
+            <td><b>image</b></td>
+            <td>{{ item.vendor_image }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><img src="customerimages/{{ item.vendor_image }}" width="400px" alt="Customer banner image"></td>
+          </tr>
+          </table>
+        
+        </td>
+
+        <td valign="top" width="50%">
+  
+          <!-- column 2 -->
+          <p>{{ item.vendor_line1 }}</p>
+          <p>{{ item.vendor_line2 }}</p>
+          <p>{{ item.vendor_line3 }}</p>
+          
+          <p>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.id);">edit</button>
+          </p>
+  
+        </td>
+      
+      </tr>
+
+      </table>
+      </div>
+      
+	</div>
+
+
+	<div id="pageEditPanel" class="uiElementDisplayNone">
+
+      <form name="pageForm">
+      <input type="hidden" id="__id" value="0">
+      </form>
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">description</span></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <textarea id="vendor_line1" rows="4" cols="40" class="uiSmallText uiFieldCore"></textarea>
+          <textarea id="vendor_line2" rows="4" cols="40" class="uiSmallText uiFieldCore"></textarea>
+          <textarea id="vendor_line3" rows="4" cols="40" class="uiSmallText uiFieldCore"></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+        </td>
+      </tr>
+      </table>
+
+    </div>	
+
+
+  </div>
+
+</div>
+
+</div>
