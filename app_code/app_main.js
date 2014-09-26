@@ -776,7 +776,7 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_type_id_ErrorMessage = "you must choose a type";
-	}
+    }
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)
@@ -911,33 +911,31 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_id_ErrorMessage = "you must choose a product";
-	}
+    }
 
     if (__product_measure_id == "0")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_measure_id_ErrorMessage = "you must choose a measure";
-	}
+    }
 
     if (__product_unit_price == "")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_unit_price_ErrorMessage = "this field is mandatory";
-	}
+    }
 
     if (isNaN(__product_unit_price) == true)
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_unit_price_ErrorMessage = "this field is not a number";
-	}
+    }
 
     if (parseFloat(__product_unit_price) <= 0)
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_unit_price_ErrorMessage = "this field must be greater than zero";
-	}
-
-
+    }
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)
@@ -1045,13 +1043,13 @@ bartender.controller('vendorProductMeasuresController', function($scope, dbRepos
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_type_id_ErrorMessage = "you must choose a type";
-	}
+    }
 
     if (__product_measure_name == "")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_measure_name_ErrorMessage = "this field is mandatory";
-	}
+    }
     //TODO: We need to check if the name has already been used
 
     //Save the data if we have no validation issues
@@ -1143,12 +1141,12 @@ bartender.controller('vendorProductTypesController', function($scope, dbReposito
     $scope._product_type_name_ErrorMessage = "";
     
     var __canSaveData = 0;
-    
+
     if (__product_type_name == "")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_type_name_ErrorMessage = "this field is mandatory";
-	}
+    }
     //TODO: We need to check if the name has already been used
 
     //Save the data if we have no validation issues
