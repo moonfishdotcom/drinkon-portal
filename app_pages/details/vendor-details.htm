@@ -83,8 +83,11 @@
       </tr>
 
       <tr>
-        <td><b>name</b></td>
-        <td><input id="vendor_name" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
+        <td><b>name</b><span class="uiMandatoryText">*</span></td>
+        <td>
+          <input id="vendor_name" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" />
+          <span class="uiSmallText uiMandatoryText">{{ _vendor_name_ErrorMessage }}</span>
+        </td>
       </tr>
       <tr>
         <td><b>address</b></td>
@@ -119,9 +122,10 @@
         <td><input id="vendor_email" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" /></td>
       </tr>
       <tr>
-        <td><b>location</b></td>
+        <td><b>location</b><span class="uiMandatoryText">*</span></td>
         <td>
           <select id="location_id" class="uiSmallText uiDdlCore">
+            <option value="0">Please choose a location...</option>
             <option value="1">Dunnington</option>
             <option value="2">Harrogate</option>
             <option value="3">Leeds</option>
@@ -130,6 +134,7 @@
             <option value="6">Ilkley</option>
             <option value="7">Starbeck</option>
           </select>
+          <span class="uiSmallText uiMandatoryText">{{ _location_id_ErrorMessage }}</span>
         </td>
       </tr>
 

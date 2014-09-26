@@ -37,6 +37,7 @@ bartender.controller('homeController', function($scope, dbRepository)
 
 });
 
+
 bartender.controller('errorController', function($scope, dbRepository)
 {
 
@@ -246,6 +247,9 @@ bartender.controller('vendorDetailsController', function($scope, dbRepository)
 
   $scope.editItem = function(_item_id)
   {
+    $scope._vendor_name_ErrorMessage = "";
+    $scope._location_id_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -292,35 +296,60 @@ bartender.controller('vendorDetailsController', function($scope, dbRepository)
     var __vendor_email = $("#vendor_email").val();
     var __location_id = $("#location_id").val();
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"vendor_name": "' + __vendor_name + '",';
-    form_json += '"vendor_addr1": "' + __vendor_addr1 + '",';
-    form_json += '"vendor_addr2": "' + __vendor_addr2 + '",';
-    form_json += '"vendor_addr3": "' + __vendor_addr3 + '",';
-    form_json += '"vendor_addr4": "' + __vendor_addr4 + '",';
-    form_json += '"vendor_postcode": "' + __vendor_postcode + '",';
-    form_json += '"vendor_phone": "' + __vendor_phone + '",';
-    form_json += '"vendor_fax": "' + __vendor_fax + '",';
-    form_json += '"vendor_email": "' + __vendor_email + '",';
-    form_json += '"location_id": "' + __location_id + '"';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._vendor_name_ErrorMessage = "";
+    $scope._location_id_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__vendor_name == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_name_ErrorMessage = "this field is mandatory";
+	}
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+    if (__location_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._location_id_ErrorMessage = "you must choose a location";
+	}
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-details";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_name": "' + __vendor_name + '",';
+      form_json += '"vendor_addr1": "' + __vendor_addr1 + '",';
+      form_json += '"vendor_addr2": "' + __vendor_addr2 + '",';
+      form_json += '"vendor_addr3": "' + __vendor_addr3 + '",';
+      form_json += '"vendor_addr4": "' + __vendor_addr4 + '",';
+      form_json += '"vendor_postcode": "' + __vendor_postcode + '",';
+      form_json += '"vendor_phone": "' + __vendor_phone + '",';
+      form_json += '"vendor_fax": "' + __vendor_fax + '",';
+      form_json += '"vendor_email": "' + __vendor_email + '",';
+      form_json += '"location_id": "' + __location_id + '"';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-details";
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+    
+    }
+
   };
 
 });
@@ -414,12 +443,20 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
     $('#user_known_as').val("");
     $('#user_pattern').val("0");
 
+    $scope._vendor_user_id_ErrorMessage = "";
+    $scope._user_name_ErrorMessage = "";
+    $scope._user_pattern_ErrorMessage = "";
+    
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
 
   $scope.editItem = function(_item_id)
   {
+    $scope._vendor_user_id_ErrorMessage = "";
+    $scope._user_name_ErrorMessage = "";
+    $scope._user_pattern_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -463,33 +500,71 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
     var __user_pattern_id = $("#user_pattern").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"vendor_id": "1",';
-    form_json += '"vendor_user_id": "' + __vendor_user_id + '",';
-    form_json += '"user_name": "' + __user_name + '",';
-    form_json += '"user_known_as": "' + __user_known_as + '",';
-    form_json += '"user_pattern_id": "' + __user_pattern_id + '",';
-    form_json += '"is_active": "' + __is_active + '" ';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._vendor_user_id_ErrorMessage = "";
+    $scope._user_name_ErrorMessage = "";
+    $scope._user_pattern_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__vendor_user_id == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_user_id_ErrorMessage = "this field is mandatory";
+	}
+    //TODO: We should check if the id has already been used here
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+    if (__user_name == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._user_name_ErrorMessage = "this field is mandatory";
+	}
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-users";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+    if (__user_known_as == "")
+    {
+      __user_known_as = __user_name;
+	}
+
+    if (__user_pattern_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._user_pattern_ErrorMessage = "you must choose a pattern";
+	}
+    
+    
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_user_id": "' + __vendor_user_id + '",';
+      form_json += '"user_name": "' + __user_name + '",';
+      form_json += '"user_known_as": "' + __user_known_as + '",';
+      form_json += '"user_pattern_id": "' + __user_pattern_id + '",';
+      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-users";
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+
+    }
+
   };
-
+  
 });
 
 bartender.controller('vendorPatternsController', function($scope, dbRepository)
@@ -507,12 +582,16 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
 
     $('#pattern_name').val("");
 
+    $scope._pattern_name_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
 
   $scope.editItem = function(_item_id)
   {
+    $scope._pattern_name_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -540,28 +619,48 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
     var __pattern_name = $("#pattern_name").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"vendor_id": "1",';
-    form_json += '"pattern_name": "' + __pattern_name + '",';
-    form_json += '"is_active": "' + __is_active + '" ';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._vendor_user_id_ErrorMessage = "";
+    $scope._user_name_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__pattern_name == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._pattern_name_ErrorMessage = "this field is mandatory";
+	}
+    //TODO: We should check if the name has already been used here
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-patterns";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_id": "1",';
+      form_json += '"pattern_name": "' + __pattern_name + '",';
+      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-patterns";
+        },
+          error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+    
+    }
+
   };
 
 });
@@ -605,12 +704,20 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
     $('#product_desc').val("");
     $('#product_type_id').val("0");
 
+    $scope._vendor_product_id_ErrorMessage = "";
+    $scope._product_name_ErrorMessage = "";
+    $scope._product_type_id_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
 
   $scope.editItem = function(_item_id)
   {
+    $scope._vendor_product_id_ErrorMessage = "";
+    $scope._product_name_ErrorMessage = "";
+    $scope._product_type_id_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -644,32 +751,65 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
     var __product_type_id = $("#product_type_id").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"vendor_id": "1",';
-    form_json += '"vendor_product_id": "' + __vendor_product_id + '",';
-    form_json += '"product_name": "' + __product_name + '",';
-    form_json += '"product_desc": "' + __product_desc + '",';
-    form_json += '"product_type_id": "' + __product_type_id + '",';
-    form_json += '"product_status_id": "1",';
-    form_json += '"is_active": "' + __is_active + '" ';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._vendor_product_id_ErrorMessage = "";
+    $scope._product_name_ErrorMessage = "";
+    $scope._product_type_id_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__vendor_product_id == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_product_id_ErrorMessage = "this field is mandatory";
+	}
+    //TODO: We need to check if the id has already been used
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+    if (__product_name == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_name_ErrorMessage = "this field is mandatory";
+	}
+    //TODO: Do we need to check if the name has already been used
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-products";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+    if (__product_type_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_type_id_ErrorMessage = "you must choose a type";
+	}
+
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_product_id": "' + __vendor_product_id + '",';
+      form_json += '"product_name": "' + __product_name + '",';
+      form_json += '"product_desc": "' + __product_desc + '",';
+      form_json += '"product_type_id": "' + __product_type_id + '",';
+      form_json += '"product_status_id": "1",';
+      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-products";
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+
+    }
+
   };
 
 });
@@ -714,6 +854,10 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     
     $("#product_measure_id").prop('disabled', true);
     $("#product_unit_price").prop('disabled', true);
+
+    $scope._product_id_ErrorMessage = "";
+    $scope._product_measure_id_ErrorMessage = "";
+    $scope._product_unit_price_ErrorMessage = "";
     
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
@@ -721,6 +865,10 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
 
   $scope.editItem = function(_item_id)
   {
+    $scope._product_id_ErrorMessage = "";
+    $scope._product_measure_id_ErrorMessage = "";
+    $scope._product_unit_price_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -752,29 +900,74 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     var __product_unit_price = $("#product_unit_price").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"product_id": "' + __product_id + '",';
-    form_json += '"product_measure_id": "' + __product_measure_id + '",';
-    form_json += '"product_unit_price": "' + __product_unit_price + '",';
-    form_json += '"is_active": "' + __is_active + '" ';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._product_id_ErrorMessage = "";
+    $scope._product_measure_id_ErrorMessage = "";
+    $scope._product_unit_price_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__product_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_id_ErrorMessage = "you must choose a product";
+	}
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+    if (__product_measure_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_measure_id_ErrorMessage = "you must choose a measure";
+	}
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-product-lines";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+    if (__product_unit_price == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_unit_price_ErrorMessage = "this field is mandatory";
+	}
+
+    if (isNaN(__product_unit_price) == true)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_unit_price_ErrorMessage = "this field is not a number";
+	}
+
+    if (parseFloat(__product_unit_price) <= 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_unit_price_ErrorMessage = "this field must be greater than zero";
+	}
+
+
+
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"product_id": "' + __product_id + '",';
+      form_json += '"product_measure_id": "' + __product_measure_id + '",';
+      form_json += '"product_unit_price": "' + __product_unit_price + '",';
+      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-product-lines";
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+      
+    }
+    
   };
 
 });	
@@ -801,12 +994,18 @@ bartender.controller('vendorProductMeasuresController', function($scope, dbRepos
     $('#product_type_id').val("0");
     $('#product_measure_name').val("");
 
+    $scope._product_type_id_ErrorMessage = "";
+    $scope._product_measure_name_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
 
   $scope.editItem = function(_item_id)
   {
+    $scope._product_type_id_ErrorMessage = "";
+    $scope._product_measure_name_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -832,34 +1031,57 @@ bartender.controller('vendorProductMeasuresController', function($scope, dbRepos
     var __id = $('#__id').val();
     var __pt = "sys_product_measures";
 
-//    var __vendor_user_id = $("#vendor_user_id").val();
     var __product_type_id = $("#product_type_id").val();
     var __product_measure_name = $("#product_measure_name").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"vendor_id": "1",';
-    form_json += '"product_type_id": "' + __product_type_id + '",';
-    form_json += '"product_measure_name": "' + __product_measure_name + '",';
-    form_json += '"is_active": "' + __is_active + '" ';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._product_type_id_ErrorMessage = "";
+    $scope._product_measure_name_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__product_type_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_type_id_ErrorMessage = "you must choose a type";
+	}
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+    if (__product_measure_name == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_measure_name_ErrorMessage = "this field is mandatory";
+	}
+    //TODO: We need to check if the name has already been used
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-product-measures";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_id": "1",';
+      form_json += '"product_type_id": "' + __product_type_id + '",';
+      form_json += '"product_measure_name": "' + __product_measure_name + '",';
+      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-product-measures";
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+      
+    }
   };
 
 });
@@ -879,12 +1101,16 @@ bartender.controller('vendorProductTypesController', function($scope, dbReposito
 
     $('#product_type_name').val("");
 
+    $scope._product_type_name_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
 
   $scope.editItem = function(_item_id)
   {
+    $scope._product_type_name_ErrorMessage = "";
+
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
@@ -913,28 +1139,46 @@ bartender.controller('vendorProductTypesController', function($scope, dbReposito
     var __product_type_name = $("#product_type_name").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
-    //Build the json
-    var form_json = '';
-    form_json += '{"data": [{';
-    form_json += '"id": "' + __id + '",';
-    form_json += '"pt": "' + __pt + '",';
-    form_json += '"vendor_id": "1",';
-    form_json += '"product_type_name": "' + __product_type_name + '",';
-    form_json += '"is_active": "' + __is_active + '" ';
-    form_json += '}]}';
+    //Check if we have any mandatory fields missing
+    $scope._product_type_name_ErrorMessage = "";
+    
+    var __canSaveData = 0;
+    
+    if (__product_type_name == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_type_name_ErrorMessage = "this field is mandatory";
+	}
+    //TODO: We need to check if the name has already been used
 
-    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "' + __id + '",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_id": "1",';
+      form_json += '"product_type_name": "' + __product_type_name + '",';
+      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '}]}';
 
-    $.ajax({
-      type: "POST", url: url,
-      success: function (data, text) {
-        window.location.href="#details/vendor-product-types";
-      },
-      error: function (request, status, error) {
-        console.log(error);
-        window.location.href="#error";
-      }
-    });
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+          window.location.href="#details/vendor-product-types";
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+      
+    }
+    
   };
 
 });

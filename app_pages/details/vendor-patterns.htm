@@ -50,8 +50,11 @@
       </tr>
 
       <tr>
-        <td><b>pattern name</b></td>
-        <td><input id="pattern_name" class="uiFieldCore uiSmallText" type="text" maxlength="50" size="30" /></td>
+        <td><b>pattern name</b><span class="uiMandatoryText">*</span></td>
+        <td>
+          <input id="pattern_name" class="uiFieldCore uiSmallText" type="text" maxlength="50" size="30" />
+          <span class="uiSmallText uiMandatoryText">{{ _pattern_name_ErrorMessage }}</span>
+        </td>
       </tr>
       <tr>
         <td><b>active</b></td>
