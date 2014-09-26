@@ -306,13 +306,13 @@ bartender.controller('vendorDetailsController', function($scope, dbRepository)
     {
       __canSaveData = __canSaveData + 1;
       $scope._vendor_name_ErrorMessage = "this field is mandatory";
-	}
+    }
 
     if (__location_id == "0")
     {
       __canSaveData = __canSaveData + 1;
       $scope._location_id_ErrorMessage = "you must choose a location";
-	}
+    }
 
 
     //Save the data if we have no validation issues
@@ -511,25 +511,25 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
     {
       __canSaveData = __canSaveData + 1;
       $scope._vendor_user_id_ErrorMessage = "this field is mandatory";
-	}
+    }
     //TODO: We should check if the id has already been used here
 
     if (__user_name == "")
     {
       __canSaveData = __canSaveData + 1;
       $scope._user_name_ErrorMessage = "this field is mandatory";
-	}
+    }
 
     if (__user_known_as == "")
     {
       __user_known_as = __user_name;
-	}
+    }
 
     if (__user_pattern_id == "0")
     {
       __canSaveData = __canSaveData + 1;
       $scope._user_pattern_ErrorMessage = "you must choose a pattern";
-	}
+    }
     
     
     //Save the data if we have no validation issues
@@ -629,7 +629,7 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
     {
       __canSaveData = __canSaveData + 1;
       $scope._pattern_name_ErrorMessage = "this field is mandatory";
-	}
+    }
     //TODO: We should check if the name has already been used here
 
 
@@ -762,14 +762,14 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
     {
       __canSaveData = __canSaveData + 1;
       $scope._vendor_product_id_ErrorMessage = "this field is mandatory";
-	}
+    }
     //TODO: We need to check if the id has already been used
 
     if (__product_name == "")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_name_ErrorMessage = "this field is mandatory";
-	}
+    }
     //TODO: Do we need to check if the name has already been used
 
     if (__product_type_id == "0")
