@@ -8,7 +8,7 @@ bartender.service('dataService', function($http)
     return $http({
       method: "GET",
       url: "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_users&i=2"
-	});
+    });
   },
 
   this.getVendorDetails = function(_item_id)
@@ -16,7 +16,7 @@ bartender.service('dataService', function($http)
     return $http({
       method: "GET",
       url: "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_vendors&i=" + _item_id + ""
-	});
+    });
   },
 
   this.getUserDetails = function(_item_id) {
@@ -24,9 +24,8 @@ bartender.service('dataService', function($http)
     return $http({
       method: "GET",
       url: "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_users&i=" + _item_id + ""
-	});
+    });
   }
-
 
 });
 
@@ -427,7 +426,8 @@ bartender.controller('vendorDescriptionController', function($scope, dbRepositor
 
 bartender.controller('vendorUsersController', function($scope, dataService, dbRepository)
 {
-
+  var __vendor_id = "1";
+  
   dbRepository.getVendorUsers(function(_error, _data)
   {
     $scope.items = _data.Data;
@@ -512,7 +512,21 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
       __canSaveData = __canSaveData + 1;
       $scope._vendor_user_id_ErrorMessage = "this field is mandatory";
     }
-    //TODO: We should check if the id has already been used here
+    
+    if (__id == "0")
+    {
+      dbRepository.getVendorUserDetailsByVendorUserId(__vendor_id, __vendor_user_id, function(_error, _data)
+      {
+        var itemData = _data.Data;
+
+        if (itemData.length > 0)
+        {
+          //If the length is greater than one then the id is already used.
+          __canSaveData = __canSaveData + 1;
+          $scope._vendor_user_id_ErrorMessage = "this user id has already been used";
+        }
+      });
+    }
 
     if (__user_name == "")
     {
@@ -540,7 +554,7 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_id": "' + __vendor_id + '",';
       form_json += '"vendor_user_id": "' + __vendor_user_id + '",';
       form_json += '"user_name": "' + __user_name + '",';
       form_json += '"user_known_as": "' + __user_known_as + '",';
@@ -569,6 +583,7 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
 
 bartender.controller('vendorPatternsController', function($scope, dbRepository)
 {
+  var __vendor_id = "1";
 
   dbRepository.getVendorPatterns(function(_error, _data)
   {
@@ -620,8 +635,7 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
     //Check if we have any mandatory fields missing
-    $scope._vendor_user_id_ErrorMessage = "";
-    $scope._user_name_ErrorMessage = "";
+    $scope._pattern_name_ErrorMessage = "";
     
     var __canSaveData = 0;
     
@@ -630,8 +644,21 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
       __canSaveData = __canSaveData + 1;
       $scope._pattern_name_ErrorMessage = "this field is mandatory";
     }
-    //TODO: We should check if the name has already been used here
 
+    if (__id == "0")
+    {
+      dbRepository.getVendorPatternDetailsByName(__vendor_id, __pattern_name, function(_error, _data)
+      {
+        var itemData = _data.Data;
+
+        if (itemData.length > 0)
+        {
+          //If the length is greater than one then the id is already used.
+          __canSaveData = __canSaveData + 1;
+          $scope._pattern_name_ErrorMessage = "this pattern name has already been used";
+        }
+      });
+    }
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)
@@ -641,7 +668,7 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_id": "' + __vendor_id + '",';
       form_json += '"pattern_name": "' + __pattern_name + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
@@ -1286,6 +1313,15 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
+    getVendorPatternDetailsByName: function(_vendor_id, _pattern_name, cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendor_patterns&s1=id&s2=" + _vendor_id + "&s3=pattern_name&s4='" + _pattern_name + "' "
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
     getVendorProductsList: function(cb)
     {
 	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=1"
@@ -1381,6 +1417,15 @@ bartender.factory('dbRepository', function($http)
     getVendorUserDetails: function(_id, cb)
     {
 	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_users&i=" + _id + ""
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
+    getVendorUserDetailsByVendorUserId: function(_vendor_id, _vendor_user_id, cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_users&s1=vendor_id&s2=" + _vendor_id + "&s3=vendor_user_id&s4=" + _vendor_user_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})

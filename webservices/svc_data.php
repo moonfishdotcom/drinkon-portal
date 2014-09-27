@@ -11,6 +11,8 @@
     private $i;
     private $s1;
     private $s2;
+    private $s3;
+    private $s4;
     private $o;
 
     function __construct()
@@ -48,6 +50,13 @@
         $this->s2 = $_GET['s2'];
       }
 
+      #The subquery id
+      if (isset($_REQUEST['s3']))
+      {
+        $this->s3 = $_GET['s3'];
+        $this->s4 = $_GET['s4'];
+      }
+
       #The order
       if (isset($_REQUEST['o']))
       {
@@ -78,6 +87,11 @@
       if ($this->s1 != "")
       {
         $sql .= "AND $this->s1=$this->s2 ";
+      }
+
+      if ($this->s3 != "")
+      {
+        $sql .= "AND $this->s3=$this->s4 ";
       }
 
       if ($this->o != "")
