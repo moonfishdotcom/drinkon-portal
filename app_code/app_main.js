@@ -1,6 +1,7 @@
 var bartender = angular.module('bartender', ['ngRoute']);
 
 
+/*
 bartender.service('dataService', function($http)
 {
   this.getData = function(_item_id) {
@@ -28,6 +29,7 @@ bartender.service('dataService', function($http)
   }
 
 });
+*/
 
 
 //Controllers
@@ -45,8 +47,9 @@ bartender.controller('errorController', function($scope, dbRepository)
 
 bartender.controller('ordersController', function($scope, dbRepository)
 {
-
-  dbRepository.getOrdersList(function(_error, _data)
+  var _vendor_id = "1";
+  
+  dbRepository.getOrdersList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
@@ -68,6 +71,8 @@ bartender.controller('ordersController', function($scope, dbRepository)
 
 bartender.controller('orderAcceptController', function($scope, $location, dbRepository)
 {
+  var _user_id = "2";
+	
   var _url = $location.absUrl();
 
   var _id = _url.substring(_url.lastIndexOf("/") + 1);
@@ -83,7 +88,7 @@ bartender.controller('orderAcceptController', function($scope, $location, dbRepo
     var __id = _order_id;
     var __pt = "sys_order_header";
     var __status = "2";
-    var __owner = "2";
+    var __owner = _user_id;
   
     //Build the json
     var form_json = '';
@@ -113,6 +118,8 @@ bartender.controller('orderAcceptController', function($scope, $location, dbRepo
 
 bartender.controller('orderCompleteController', function($scope, $location, dbRepository)
 {
+  var _user_id = "2";
+
   var _url = $location.absUrl();
 
   var _id = _url.substring(_url.lastIndexOf("/") + 1);
@@ -128,7 +135,7 @@ bartender.controller('orderCompleteController', function($scope, $location, dbRe
     var __id = _order_id;
     var __pt = "sys_order_header";
     var __status = "3";
-    var __owner = "2";
+    var __owner = _user_id;
   
     //Build the json
     var form_json = '';
@@ -158,8 +165,9 @@ bartender.controller('orderCompleteController', function($scope, $location, dbRe
 
 bartender.controller('stockController', function($scope, dbRepository)
 {
-
-  dbRepository.getStockList(function(_error, _data)
+  var _vendor_id = "1";
+  
+  dbRepository.getStockList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
@@ -236,15 +244,15 @@ bartender.controller('detailsController', function($scope, dbRepository)
 
 bartender.controller('vendorDetailsController', function($scope, dbRepository)
 {
-  var _item_id = "1";
+  var _vendor_id = "1";
 
-  dbRepository.getVendorDetails(function(_error, _data)
+  dbRepository.getVendorDetails(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
   });
 
-  $scope.editItem = function(_item_id)
+  $scope.editItem = function(_vendor_id)
   {
     $scope._vendor_name_ErrorMessage = "";
     $scope._location_id_ErrorMessage = "";
@@ -252,7 +260,7 @@ bartender.controller('vendorDetailsController', function($scope, dbRepository)
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
-    dbRepository.getVendorDetails(function(_error, _data)
+    dbRepository.getVendorDetails(_vendor_id, function(_error, _data)
     {
       var itemData = _data.Data;
       console.log(itemData);
@@ -355,21 +363,21 @@ bartender.controller('vendorDetailsController', function($scope, dbRepository)
 
 bartender.controller('vendorDescriptionController', function($scope, dbRepository)
 {
-  var _item_id = "1";
+  var _vendor_id = "1";
 
-  dbRepository.getVendorDescription(function(_error, _data)
+  dbRepository.getVendorDescription(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
   });
 
 
-  $scope.editItem = function(_item_id)
+  $scope.editItem = function(_vendor_id)
   {
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
-    dbRepository.getVendorDescription(function(_error, _data)
+    dbRepository.getVendorDescription(_vendor_id, function(_error, _data)
     {
       var itemData = _data.Data;
       console.log(itemData);
@@ -426,9 +434,9 @@ bartender.controller('vendorDescriptionController', function($scope, dbRepositor
 
 bartender.controller('vendorUsersController', function($scope, dataService, dbRepository)
 {
-  var __vendor_id = "1";
+  var _vendor_id = "1";
   
-  dbRepository.getVendorUsers(function(_error, _data)
+  dbRepository.getVendorUsers(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
@@ -515,7 +523,7 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
     
     if (__id == "0")
     {
-      dbRepository.getVendorUserDetailsByVendorUserId(__vendor_id, __vendor_user_id, function(_error, _data)
+      dbRepository.getVendorUserDetailsByVendorUserId(_vendor_id, __vendor_user_id, function(_error, _data)
       {
         var itemData = _data.Data;
 
@@ -554,7 +562,7 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "' + __vendor_id + '",';
+      form_json += '"vendor_id": "' + _vendor_id + '",';
       form_json += '"vendor_user_id": "' + __vendor_user_id + '",';
       form_json += '"user_name": "' + __user_name + '",';
       form_json += '"user_known_as": "' + __user_known_as + '",';
@@ -583,9 +591,9 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
 
 bartender.controller('vendorPatternsController', function($scope, dbRepository)
 {
-  var __vendor_id = "1";
+  var _vendor_id = "1";
 
-  dbRepository.getVendorPatterns(function(_error, _data)
+  dbRepository.getVendorPatterns(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
@@ -647,7 +655,7 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
 
     if (__id == "0")
     {
-      dbRepository.getVendorPatternDetailsByName(__vendor_id, __pattern_name, function(_error, _data)
+      dbRepository.getVendorPatternDetailsByName(_vendor_id, __pattern_name, function(_error, _data)
       {
         var itemData = _data.Data;
 
@@ -668,7 +676,7 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "' + __vendor_id + '",';
+      form_json += '"vendor_id": "' + _vendor_id + '",';
       form_json += '"pattern_name": "' + __pattern_name + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
@@ -709,14 +717,15 @@ bartender.controller('vendorAccountsController', function($scope, dbRepository)
 
 bartender.controller('vendorProductsController', function($scope, dbRepository)
 {
+  var _vendor_id = "1";
 
-  dbRepository.getVendorProductsList(function(_error, _data)
+  dbRepository.getVendorProductsList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
   });
 
-  dbRepository.getVendorProductTypesList(function(_error, _data)
+  dbRepository.getVendorProductTypesList(_vendor_id, function(_error, _data)
   {
     $scope.product_types = _data.Data;
     console.log($scope.product_types);
@@ -813,7 +822,7 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_id": "' + _vendor_id + '",';
       form_json += '"vendor_product_id": "' + __vendor_product_id + '",';
       form_json += '"product_name": "' + __product_name + '",';
       form_json += '"product_desc": "' + __product_desc + '",';
@@ -843,20 +852,21 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
 
 bartender.controller('vendorProductLinesController', function($scope, dbRepository)
 {
-
-  dbRepository.getVendorProductLinesList(function(_error, _data)
+  var _vendor_id = "1";
+  
+  dbRepository.getVendorProductLinesList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
   });
 
-  dbRepository.getVendorProductsList(function(_error, _data)
+  dbRepository.getVendorProductsList(_vendor_id, function(_error, _data)
   {
     $scope.products = _data.Data;
     console.log($scope.products);
   });
 
-  dbRepository.getVendorProductMeasuresList(function(_error, _data)
+  dbRepository.getVendorProductMeasuresList(_vendor_id, function(_error, _data)
   {
     $scope.product_measures = _data.Data;
     console.log($scope.product_measures);
@@ -999,14 +1009,15 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
 
 bartender.controller('vendorProductMeasuresController', function($scope, dbRepository)
 {
+  var _vendor_id = "1";
 
-  dbRepository.getVendorProductMeasuresList(function(_error, _data)
+  dbRepository.getVendorProductMeasuresList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
   });
 
-  dbRepository.getVendorProductTypesList(function(_error, _data)
+  dbRepository.getVendorProductTypesList(_vendor_id, function(_error, _data)
   {
     $scope.product_types = _data.Data;
     console.log($scope.product_types);
@@ -1087,7 +1098,7 @@ bartender.controller('vendorProductMeasuresController', function($scope, dbRepos
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_id": "' + _vendor_id + '",';
       form_json += '"product_type_id": "' + __product_type_id + '",';
       form_json += '"product_measure_name": "' + __product_measure_name + '",';
       form_json += '"is_active": "' + __is_active + '" ';
@@ -1113,8 +1124,9 @@ bartender.controller('vendorProductMeasuresController', function($scope, dbRepos
 
 bartender.controller('vendorProductTypesController', function($scope, dbRepository)
 {
+  var _vendor_id = "1";
 
-  dbRepository.getVendorProductTypesList(function(_error, _data)
+  dbRepository.getVendorProductTypesList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
@@ -1184,7 +1196,7 @@ bartender.controller('vendorProductTypesController', function($scope, dbReposito
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
-      form_json += '"vendor_id": "1",';
+      form_json += '"vendor_id": "' + _vendor_id + '",';
       form_json += '"product_type_name": "' + __product_type_name + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
@@ -1257,9 +1269,9 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getOrdersList: function(cb)
+    getOrdersList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ALL&q=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ALL&q=" + _vendor_id + ""
 	  
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1267,9 +1279,9 @@ bartender.factory('dbRepository', function($http)
     },
 
 
-    getStockList: function(cb)
+    getStockList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1277,27 +1289,27 @@ bartender.factory('dbRepository', function($http)
     },
 
 
-    getVendorDetails: function(cb)
+    getVendorDetails: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_with_location&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_with_location&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorDescription: function(cb)
+    getVendorDescription: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_description&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_description&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorPatterns: function(cb)
+    getVendorPatterns: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendor_patterns&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendor_patterns&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1322,9 +1334,9 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorProductsList: function(cb)
+    getVendorProductsList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1340,9 +1352,9 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorProductLinesList: function(cb)
+    getVendorProductLinesList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_lines_with_descs&s1=vendor_id&s2=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_lines_with_descs&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1358,9 +1370,9 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorProductMeasuresList: function(cb)
+    getVendorProductMeasuresList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1376,9 +1388,9 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorProductTypesList: function(cb)
+    getVendorProductTypesList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_types&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_types&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1394,20 +1406,20 @@ bartender.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorReviewsList: function(cb)
+    getVendorReviewsList: function(_vendor_id, cb)
     {
 	  var url = "http://finarfin/bartender/testdata/reviews.json";
 	  
-	  //var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ALL&q=1"
+	  //var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ALL&q=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorUsers: function(cb)
+    getVendorUsers: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_users_with_patterns&i=1"
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_users_with_patterns&i=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
