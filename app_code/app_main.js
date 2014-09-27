@@ -872,6 +872,25 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     console.log($scope.product_measures);
   });
 
+  $scope.fillMeasureList = function(_product_id)
+  {
+    dbRepository.getVendorProductMeasuresListByProductId(_product_id, function(_error, _data)
+    {
+      var itemData = _data.Data;
+      console.log(itemData);
+      
+      //Push the items into the list
+      $scope.product_measures.splice(0,999);
+
+      for (i = 0; i < itemData.length; i++)
+      {
+        $scope.product_measures.push({ruid:itemData[i].measure_id, product_measure_name:itemData[i].product_measure_name});
+        console.log(itemData[i].measure_id);
+        console.log(itemData[i].product_measure_name);
+      }
+    });
+  }
+
   $scope.productOnChange = function()
   {
     $("#product_measure_id").prop('disabled', false);
@@ -879,6 +898,8 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     
     var _product_id = $("#product_id").val();
     console.log(_product_id);
+
+    $scope.fillMeasureList(_product_id);
   }
   
   $scope.newItem = function()
@@ -913,11 +934,14 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     {
       var itemData = _data.Data;
 
+      $scope.fillMeasureList(itemData[0].product_id);
+console.log(itemData[0].product_measure_id);
+
       $('#__id').val(itemData[0].id);
       $('#product_id').val(itemData[0].product_id);
       $('#product_measure_id').val(itemData[0].product_measure_id);
       $('#product_unit_price').val(itemData[0].product_unit_price);
-      $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
+      $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
     });
   }
 
@@ -1411,6 +1435,24 @@ bartender.factory('dbRepository', function($http)
     getVendorProductMeasuresList: function(_vendor_id, cb)
     {
 	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&i=" + _vendor_id + ""
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
+    getVendorProductMeasuresListByTypeId: function(_type_id, cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&s1=product_type_id&s2=" + _type_id + ""
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
+    getVendorProductMeasuresListByProductId: function(_product_id, cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_measures&s1=product_id&s2=" + _product_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
