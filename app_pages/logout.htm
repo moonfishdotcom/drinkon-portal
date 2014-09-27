@@ -24,20 +24,21 @@
       <tr>
         <td>
 
-          <select class="uiLargerText uiDdlCore">
+          <select id="action_id" class="uiLargerText uiDdlCore" ng-model="action_id" ng-change="actionOnChange()">
+            <option value="0">You must choose an action...</option>
             <option value="1">Unassign my orders</option>
             <option value="2">Reassign my orders</option>
           </select>
 
-          <select class="uiLargerText uiDdlCore">
-            <option value="1">Lucy Harrington</option>
-            <option value="2">Ben Lacey</option>
+          <select id="user_id" class="uiLargerText uiDdlCore">
+            <option value="0">Please choose a user...</option>
+            <option ng-repeat="list_item in users" value="{{ list_item.ruid }}">{{ list_item.user_name }}</option>
           </select>
 
         </td>
 
         <td>
-          <button class="uiButtonBase uiButtonLarge uiButtonYes uiLargerText" onclick="">continue</button>
+          <button class="uiButtonBase uiButtonLarge uiButtonYes uiLargerText" ng-click="doLogout();">continue</button>
         </td>
       </tr>
 
