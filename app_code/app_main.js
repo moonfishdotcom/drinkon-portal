@@ -31,6 +31,17 @@ bartender.service('dataService', function($http)
 });
 */
 
+/*
+ * In the controller
+    $scope.data = null;
+    dataService.getUserDetails(_item_id).then(function(dataResponse)
+    {
+      $scope.data = dataResponse;
+      console.log($scope.data);
+      console.log(dataResponse.data[0].user_known_as);
+	});
+*/
+
 
 //Controllers
 bartender.controller('homeController', function($scope, dbRepository)
@@ -468,16 +479,6 @@ bartender.controller('vendorUsersController', function($scope, dataService, dbRe
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
-/*
-    $scope.data = null;
-    dataService.getUserDetails(_item_id).then(function(dataResponse)
-    {
-      $scope.data = dataResponse;
-      console.log($scope.data);
-      console.log(dataResponse.data[0].user_known_as);
-	});
-*/
-
     dbRepository.getVendorUserDetails(_item_id, function(_error, _data)
     {
       var itemData = _data.Data;
@@ -850,7 +851,7 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
 
 });
 
-bartender.controller('vendorProductLinesController', function($scope, dbRepository)
+bartender.controller('vendorProductLinesController', function($scope, $timeout, $q, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -889,6 +890,17 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
         console.log(itemData[i].product_measure_name);
       }
     });
+  }
+  
+  $scope.setDataFieldsOnEdit = function(itemData)
+  {
+    console.log("In setDataFieldsOnEdit");
+    $('#__id').val(itemData[0].id);
+    $('#product_id').val(itemData[0].product_id);
+    $('#product_measure_id').val(itemData[0].product_measure_id);
+    console.log("Measure_id=" + itemData[0].product_measure_id);
+    $('#product_unit_price').val(itemData[0].product_unit_price);
+    $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
   }
 
   $scope.productOnChange = function()
@@ -933,9 +945,18 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     dbRepository.getVendorProductLineDetails(_item_id, function(_error, _data)
     {
       var itemData = _data.Data;
+      console.log("Product_Id:" + itemData[0].product_id);
 
-      $scope.fillMeasureList(itemData[0].product_id);
-console.log(itemData[0].product_measure_id);
+      var _deferred = $q.defer();
+      var _promise = _deferred.promise;
+
+      _promise = _promise.then($scope.fillMeasureList(itemData[0].product_id)).then($scope.setDataFieldsOnEdit(itemData));
+	});
+
+/*
+    dbRepository.getVendorProductLineDetails(_item_id, function(_error, _data)
+    {
+      var itemData = _data.Data;
 
       $('#__id').val(itemData[0].id);
       $('#product_id').val(itemData[0].product_id);
@@ -943,6 +964,8 @@ console.log(itemData[0].product_measure_id);
       $('#product_unit_price').val(itemData[0].product_unit_price);
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
     });
+*/
+
   }
 
   $scope.cancelItem = function()
