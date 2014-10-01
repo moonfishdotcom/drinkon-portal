@@ -443,7 +443,7 @@ bartender.controller('vendorDescriptionController', function($scope, dbRepositor
 
 });
 
-bartender.controller('vendorUsersController', function($scope, dataService, dbRepository)
+bartender.controller('vendorUsersController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -851,7 +851,7 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
 
 });
 
-bartender.controller('vendorProductLinesController', function($scope, $timeout, $q, dbRepository)
+bartender.controller('vendorProductLinesController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
