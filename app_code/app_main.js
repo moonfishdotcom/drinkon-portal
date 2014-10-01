@@ -873,7 +873,7 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
     console.log($scope.product_measures);
   });
 
-  $scope.fillMeasureList = function(_product_id)
+  $scope.fillMeasureList = function(_product_id, cb)
   {
     dbRepository.getVendorProductMeasuresListByProductId(_product_id, function(_error, _data)
     {
@@ -889,11 +889,18 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
         console.log(itemData[i].measure_id);
         console.log(itemData[i].product_measure_name);
       }
+      
+      if (cb)
+      {
+        cb(_error);
+      }
+      
     });
   }
   
   $scope.setDataFieldsOnEdit = function(itemData)
   {
+//TODO: This needs to change
     console.log("In setDataFieldsOnEdit");
     $('#__id').val(itemData[0].id);
     $('#product_id').val(itemData[0].product_id);
@@ -907,23 +914,38 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
   {
     $("#product_measure_id").prop('disabled', false);
     $("#product_unit_price").prop('disabled', false);
-    
-    var _product_id = $("#product_id").val();
-    console.log(_product_id);
+
+//TODO: Check if product is null    
+    //var _product_id = $("#product_id").val();
+    var _product_id = $scope.product.ruid;
+    console.log("Product name:" + $scope.product.product_name);
+    console.log("Product Id:" + _product_id);
 
     $scope.fillMeasureList(_product_id);
   }
   
+  $scope.test = function(input)
+  {
+    console.log(input.product_name);
+  }
+
+  $scope.test2 = function()
+  {
+    console.log($scope.product.product_name);
+  }
+
   $scope.newItem = function()
   {
     $('#__id').val("0");
 
-    $("#product_id").val("0");
-    $("#product_measure_id").val("0");
+//TODO: Change this to set the ddls via angular
+    //$("#product_id").val("0");
+    //$("#product_measure_id").val("0");
     $("#product_unit_price").val("");
-    
-    $("#product_measure_id").prop('disabled', true);
-    $("#product_unit_price").prop('disabled', true);
+
+//TODO: Change this to use the angular ng-disable/enable    
+    //$("#product_measure_id").prop('disabled', true);
+    //$("#product_unit_price").prop('disabled', true);
 
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
@@ -947,10 +969,11 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
       var itemData = _data.Data;
       console.log("Product_Id:" + itemData[0].product_id);
 
-      var _deferred = $q.defer();
-      var _promise = _deferred.promise;
+      $scope.fillMeasureList(itemData[0].product_id, function(_err)
+      {
+        $scope.setDataFieldsOnEdit(itemData);
+      });
 
-      _promise = _promise.then($scope.fillMeasureList(itemData[0].product_id)).then($scope.setDataFieldsOnEdit(itemData));
 	});
 
 /*
@@ -979,8 +1002,16 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
     var __id = $('#__id').val();
     var __pt = "sys_product_lines";
 
-    var __product_id = $("#product_id").val();
-    var __product_measure_id = $("#product_measure_id").val();
+//TODO: Check if product is null
+    //var __product_id = $("#product_id").val();
+    var __product_id = $scope.product.ruid;
+    console.log($scope.product.ruid);
+
+//TODO: Check if product_measure is null
+    //var __product_measure_id = $("#product_measure_id").val();
+    var __product_measure_id = $scope.product_measure.ruid;
+    console.log($scope.product_measure.ruid);
+
     var __product_unit_price = $("#product_unit_price").val();
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
@@ -1034,7 +1065,9 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
       form_json += '"product_unit_price": "' + __product_unit_price + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
+console.log(form_json);
 
+/*
       var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
 
       $.ajax({
@@ -1047,7 +1080,7 @@ bartender.controller('vendorProductLinesController', function($scope, $timeout, 
           window.location.href="#error";
         }
       });
-      
+*/      
     }
     
   };
