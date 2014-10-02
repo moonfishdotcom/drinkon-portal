@@ -58,12 +58,6 @@
           <select class="uiSmallText uiDdlCore" ng-model="product" ng-options="product.product_name for product in products" ng-change="productOnChange()">
             <option value="">Please choose a product...</option>
           </select>
-
-          <!--<select id="product_id" class="uiSmallText uiDdlCore" ng-model="product_id" ng-change="productOnChange()">
-            <option value="0">Please choose a product...</option>
-            <option ng-repeat="list_item in products" value="{{ list_item.ruid }}">{{ list_item.product_name }}</option>
-          </select>-->
-
           <span class="uiSmallText uiMandatoryText">{{ _product_id_ErrorMessage }}</span>
         </td>
       </tr>
@@ -77,25 +71,10 @@
           <span class="uiSmallText uiMandatoryText">{{ _product_measure_id_ErrorMessage }}</span>
         </td>
       </tr>
-
-
-<!--
-      <tr>
-        <td><b>measure</b><span class="uiMandatoryText">*</span></td>
-        <td>
-          <select id="product_measure_id" class="uiSmallText uiDdlCore">
-            <option value="0">Please choose a measure...</option>
-            <option ng-repeat="list_item in product_measures" value="{{ list_item.ruid }}">{{ list_item.product_measure_name }}</option>
-          </select>
-          <span class="uiSmallText uiMandatoryText">{{ _product_measure_id_ErrorMessage }}</span>
-        </td>
-      </tr>
--->
-      
       <tr>
         <td><b>unit price</b><span class="uiMandatoryText">*</span></td>
         <td>
-          <input id="product_unit_price" class="uiFieldCore uiSmallText" type="text" maxlength="5" size="5" />
+          <input class="uiFieldCore uiSmallText" ng-model="product_unit_price" type="text" maxlength="5" size="5" />
           <span class="uiSmallText uiMandatoryText">{{ _product_unit_price_ErrorMessage }}</span>
         </td>
       </tr>

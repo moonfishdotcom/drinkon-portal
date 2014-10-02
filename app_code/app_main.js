@@ -900,13 +900,20 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
   
   $scope.setDataFieldsOnEdit = function(itemData)
   {
-//TODO: This needs to change
-    console.log("In setDataFieldsOnEdit");
     $('#__id').val(itemData[0].id);
-    $('#product_id').val(itemData[0].product_id);
-    $('#product_measure_id').val(itemData[0].product_measure_id);
-    console.log("Measure_id=" + itemData[0].product_measure_id);
-    $('#product_unit_price').val(itemData[0].product_unit_price);
+
+    $scope.product = $scope.products.filter(function (item)
+    {
+      return item.ruid == itemData[0].product_id;
+    })[0];
+
+    $scope.product_measure = $scope.product_measures.filter(function (item)
+    {
+      return item.ruid == itemData[0].product_measure_id;
+    })[0];
+
+    $scope.product_unit_price = itemData[0].product_unit_price;
+
     $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
   }
 
@@ -915,37 +922,26 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     $("#product_measure_id").prop('disabled', false);
     $("#product_unit_price").prop('disabled', false);
 
-//TODO: Check if product is null    
-    //var _product_id = $("#product_id").val();
-    var _product_id = $scope.product.ruid;
-    console.log("Product name:" + $scope.product.product_name);
-    console.log("Product Id:" + _product_id);
+    var _product_id = "0";
+    if ($scope.product != null)
+    {
+      _product_id = $scope.product.ruid;
+	}
 
     $scope.fillMeasureList(_product_id);
   }
   
-  $scope.test = function(input)
-  {
-    console.log(input.product_name);
-  }
-
-  $scope.test2 = function()
-  {
-    console.log($scope.product.product_name);
-  }
-
   $scope.newItem = function()
   {
     $('#__id').val("0");
 
-//TODO: Change this to set the ddls via angular
-    //$("#product_id").val("0");
-    //$("#product_measure_id").val("0");
-    $("#product_unit_price").val("");
+    $scope.product = null;
+    $scope.product_measure = null;
+    $scope.product_unit_price = "";
 
 //TODO: Change this to use the angular ng-disable/enable    
-    //$("#product_measure_id").prop('disabled', true);
-    //$("#product_unit_price").prop('disabled', true);
+    $("#product_measure_id").prop('disabled', true);
+    $("#product_unit_price").prop('disabled', true);
 
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
@@ -967,28 +963,12 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     dbRepository.getVendorProductLineDetails(_item_id, function(_error, _data)
     {
       var itemData = _data.Data;
-      console.log("Product_Id:" + itemData[0].product_id);
 
       $scope.fillMeasureList(itemData[0].product_id, function(_err)
       {
         $scope.setDataFieldsOnEdit(itemData);
       });
-
 	});
-
-/*
-    dbRepository.getVendorProductLineDetails(_item_id, function(_error, _data)
-    {
-      var itemData = _data.Data;
-
-      $('#__id').val(itemData[0].id);
-      $('#product_id').val(itemData[0].product_id);
-      $('#product_measure_id').val(itemData[0].product_measure_id);
-      $('#product_unit_price').val(itemData[0].product_unit_price);
-      $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
-    });
-*/
-
   }
 
   $scope.cancelItem = function()
@@ -1002,17 +982,20 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
     var __id = $('#__id').val();
     var __pt = "sys_product_lines";
 
-//TODO: Check if product is null
-    //var __product_id = $("#product_id").val();
-    var __product_id = $scope.product.ruid;
-    console.log($scope.product.ruid);
+    var __product_id = "0";    
+    if ($scope.product != null)
+    {
+      __product_id = $scope.product.ruid;
+	}
 
-//TODO: Check if product_measure is null
-    //var __product_measure_id = $("#product_measure_id").val();
-    var __product_measure_id = $scope.product_measure.ruid;
-    console.log($scope.product_measure.ruid);
+    var __product_measure_id = "0";
+    if ($scope.product_measure != null)
+    {
+      __product_measure_id = $scope.product_measure.ruid;
+	}
 
-    var __product_unit_price = $("#product_unit_price").val();
+    var __product_unit_price = $scope.product_unit_price;
+
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
     //Check if we have any mandatory fields missing
@@ -1065,9 +1048,7 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
       form_json += '"product_unit_price": "' + __product_unit_price + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
-console.log(form_json);
 
-/*
       var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
 
       $.ajax({
@@ -1080,7 +1061,7 @@ console.log(form_json);
           window.location.href="#error";
         }
       });
-*/      
+
     }
     
   };
