@@ -1,8 +1,8 @@
-var bartender = angular.module('bartender', ['ngRoute']);
+var drinkon = angular.module('drinkon', ['ngRoute']);
 
 
 /*
-bartender.service('dataService', function($http)
+drinkon.service('dataService', function($http)
 {
   this.getData = function(_item_id) {
 
@@ -44,19 +44,19 @@ bartender.service('dataService', function($http)
 
 
 //Controllers
-bartender.controller('homeController', function($scope, dbRepository)
+drinkon.controller('homeController', function($scope, dbRepository)
 {
 
 });
 
 
-bartender.controller('errorController', function($scope, dbRepository)
+drinkon.controller('errorController', function($scope, dbRepository)
 {
 
 });
 
 
-bartender.controller('ordersController', function($scope, dbRepository)
+drinkon.controller('ordersController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -80,7 +80,7 @@ bartender.controller('ordersController', function($scope, dbRepository)
 
 });
 
-bartender.controller('orderAcceptController', function($scope, $location, dbRepository)
+drinkon.controller('orderAcceptController', function($scope, $location, dbRepository)
 {
   var _user_id = "2";
 	
@@ -127,7 +127,7 @@ bartender.controller('orderAcceptController', function($scope, $location, dbRepo
   
 });
 
-bartender.controller('orderCompleteController', function($scope, $location, dbRepository)
+drinkon.controller('orderCompleteController', function($scope, $location, dbRepository)
 {
   var _user_id = "2";
 
@@ -174,7 +174,7 @@ bartender.controller('orderCompleteController', function($scope, $location, dbRe
 });
 
 
-bartender.controller('stockController', function($scope, dbRepository)
+drinkon.controller('stockController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -242,18 +242,18 @@ bartender.controller('stockController', function($scope, dbRepository)
 });
 
 
-bartender.controller('socialController', function($scope, dbRepository)
+drinkon.controller('socialController', function($scope, dbRepository)
 {
 
 });
 
 
-bartender.controller('detailsController', function($scope, dbRepository)
+drinkon.controller('detailsController', function($scope, dbRepository)
 {
 
 });
 
-bartender.controller('vendorDetailsController', function($scope, dbRepository)
+drinkon.controller('vendorDetailsController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
 
@@ -372,7 +372,7 @@ bartender.controller('vendorDetailsController', function($scope, dbRepository)
 
 });
 
-bartender.controller('vendorDescriptionController', function($scope, dbRepository)
+drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
 
@@ -443,7 +443,7 @@ bartender.controller('vendorDescriptionController', function($scope, dbRepositor
 
 });
 
-bartender.controller('vendorUsersController', function($scope, dbRepository)
+drinkon.controller('vendorUsersController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -590,7 +590,7 @@ bartender.controller('vendorUsersController', function($scope, dbRepository)
   
 });
 
-bartender.controller('vendorPatternsController', function($scope, dbRepository)
+drinkon.controller('vendorPatternsController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
 
@@ -701,22 +701,22 @@ bartender.controller('vendorPatternsController', function($scope, dbRepository)
 
 });
 
-bartender.controller('vendorRolesController', function($scope, dbRepository)
+drinkon.controller('vendorRolesController', function($scope, dbRepository)
 {
 
 });
 
-bartender.controller('vendorLocationController', function($scope, dbRepository)
+drinkon.controller('vendorLocationController', function($scope, dbRepository)
 {
 
 });
 
-bartender.controller('vendorAccountsController', function($scope, dbRepository)
+drinkon.controller('vendorAccountsController', function($scope, dbRepository)
 {
 
 });
 
-bartender.controller('vendorProductsController', function($scope, dbRepository)
+drinkon.controller('vendorProductsController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
 
@@ -851,7 +851,7 @@ bartender.controller('vendorProductsController', function($scope, dbRepository)
 
 });
 
-bartender.controller('vendorProductLinesController', function($scope, dbRepository)
+drinkon.controller('vendorProductLinesController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -1068,7 +1068,7 @@ bartender.controller('vendorProductLinesController', function($scope, dbReposito
 
 });	
 
-bartender.controller('vendorProductMeasuresController', function($scope, dbRepository)
+drinkon.controller('vendorProductMeasuresController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
 
@@ -1183,7 +1183,7 @@ bartender.controller('vendorProductMeasuresController', function($scope, dbRepos
 
 });
 
-bartender.controller('vendorProductTypesController', function($scope, dbRepository)
+drinkon.controller('vendorProductTypesController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
 
@@ -1281,26 +1281,27 @@ bartender.controller('vendorProductTypesController', function($scope, dbReposito
 
 });
 
-bartender.controller('vendorReportsController', function($scope, dbRepository)
+drinkon.controller('vendorReportsController', function($scope, dbRepository)
 {
 
 });
 
-bartender.controller('vendorSocialController', function($scope, dbRepository)
+drinkon.controller('vendorSocialController', function($scope, dbRepository)
 {
 
 });
 
 
-bartender.controller('socialNotificationsController', function($scope, dbRepository)
+drinkon.controller('socialNotificationsController', function($scope, dbRepository)
 {
 
 });
 
-bartender.controller('socialReviewsController', function($scope, dbRepository)
+drinkon.controller('socialReviewsController', function($scope, dbRepository)
 {
+  var _vendor_id = "1";
 
-  dbRepository.getVendorReviewsList(function(_error, _data)
+  dbRepository.getVendorReviewsList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
@@ -1309,7 +1310,7 @@ bartender.controller('socialReviewsController', function($scope, dbRepository)
 });
 
 
-bartender.controller('logoutController', function($scope, dbRepository)
+drinkon.controller('logoutController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
   
@@ -1355,7 +1356,7 @@ bartender.controller('logoutController', function($scope, dbRepository)
 
 
 //Db function factory
-bartender.factory('dbRepository', function($http)
+drinkon.factory('dbRepository', function($http)
 {
   return {
 
@@ -1525,9 +1526,7 @@ bartender.factory('dbRepository', function($http)
 
     getVendorReviewsList: function(_vendor_id, cb)
     {
-	  var url = "http://finarfin/bartender/testdata/reviews.json";
-	  
-	  //var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ALL&q=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_customer_reviews&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -1567,7 +1566,7 @@ bartender.factory('dbRepository', function($http)
 
 
 //Routing
-bartender.config(function($routeProvider) {
+drinkon.config(function($routeProvider) {
 $routeProvider
 
   .when('/', {
