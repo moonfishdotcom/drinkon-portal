@@ -372,7 +372,6 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
 
 });
 
-*/
 
 drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
 {
@@ -444,6 +443,9 @@ drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
   };
 
 });
+*/
+
+
 
 drinkon.controller('vendorUsersController', function($scope, dbRepository)
 {
