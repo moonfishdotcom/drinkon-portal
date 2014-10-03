@@ -1,6 +1,5 @@
 var drinkon = angular.module('drinkon', ['ngRoute']);
 
-
 /*
 drinkon.service('dataService', function($http)
 {
@@ -44,11 +43,11 @@ drinkon.service('dataService', function($http)
 
 
 //Controllers
+/*
 drinkon.controller('homeController', function($scope, dbRepository)
 {
-
+  $("#temptext").html("Hello World");
 });
-
 
 drinkon.controller('errorController', function($scope, dbRepository)
 {
@@ -253,6 +252,7 @@ drinkon.controller('detailsController', function($scope, dbRepository)
 
 });
 
+
 drinkon.controller('vendorDetailsController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
@@ -371,6 +371,8 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
   };
 
 });
+
+*/
 
 drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
 {
@@ -939,7 +941,6 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     $scope.product_measure = null;
     $scope.product_unit_price = "";
 
-//TODO: Change this to use the angular ng-disable/enable    
     $("#product_measure_id").prop('disabled', true);
     $("#product_unit_price").prop('disabled', true);
 
@@ -1081,15 +1082,14 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
   dbRepository.getVendorProductTypesList(_vendor_id, function(_error, _data)
   {
     $scope.product_types = _data.Data;
-    console.log($scope.product_types);
   });
 
   $scope.newItem = function()
   {
     $('#__id').val("0");
 
-    $('#product_type_id').val("0");
-    $('#product_measure_name').val("");
+    $scope.product_type = null;
+    $scope.product_measure = "";
 
     $scope._product_type_id_ErrorMessage = "";
     $scope._product_measure_name_ErrorMessage = "";
@@ -1111,8 +1111,14 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
       var itemData = _data.Data;
 
       $('#__id').val(itemData[0].ruid);
-      $('#product_type_id').val(itemData[0].product_type_id);
-      $('#product_measure_name').val(itemData[0].product_measure_name);
+
+      $scope.product_type = $scope.product_types.filter(function (item)
+      {
+        return item.ruid == itemData[0].product_type_id;
+      })[0];
+
+      $scope.product_measure = itemData[0].product_measure_name;
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -1128,9 +1134,20 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
     var __id = $('#__id').val();
     var __pt = "sys_product_measures";
 
-    var __product_type_id = $("#product_type_id").val();
-    var __product_measure_name = $("#product_measure_name").val();
+    var __product_type_id = "0";    
+    if ($scope.product_type != null)
+    {
+      __product_type_id = $scope.product_type.ruid;
+	}
+
+    var __product_measure_name = "";    
+    if ($scope.product_measure != null)
+    {
+      __product_measure_name = $scope.product_measure;
+	}
+
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
+
 
     //Check if we have any mandatory fields missing
     $scope._product_type_id_ErrorMessage = "";
@@ -1177,7 +1194,6 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
           window.location.href="#error";
         }
       });
-      
     }
   };
 
