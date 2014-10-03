@@ -718,7 +718,6 @@ drinkon.controller('vendorAccountsController', function($scope, dbRepository)
 {
 
 });
-*/
 
 
 
@@ -1073,6 +1072,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
 });	
 
+
 drinkon.controller('vendorProductMeasuresController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
@@ -1203,6 +1203,7 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
 
 });
 
+
 drinkon.controller('vendorProductTypesController', function($scope, dbRepository)
 {
   var _vendor_id = "1";
@@ -1301,6 +1302,9 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
 
 });
 
+
+
+
 drinkon.controller('vendorReportsController', function($scope, dbRepository)
 {
 
@@ -1372,7 +1376,7 @@ drinkon.controller('logoutController', function($scope, dbRepository)
   }
 
 });
-
+*/
 
 
 //Db function factory
