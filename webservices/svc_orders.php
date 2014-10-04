@@ -88,6 +88,7 @@
         {
           $data[$c1]->order[$c2]->ruid = $lines['ruid'];
           $data[$c1]->order[$c2]->product_id = $lines['product_id'];
+          $data[$c1]->order[$c2]->vendor_product_id = $lines['vendor_product_id'];
           $data[$c1]->order[$c2]->product_name = $lines['product_name'];
           $data[$c1]->order[$c2]->product_type_id = $lines['product_type_id'];
           $data[$c1]->order[$c2]->product_measure_name = $lines['product_measure_name'];

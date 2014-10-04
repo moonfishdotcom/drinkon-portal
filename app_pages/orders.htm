@@ -22,7 +22,7 @@
           <td colspan="2">
             <table width="98%" cellspacing="5" cellpadding="5">
             <tr ng-repeat="itemline in item.order">
-              <td width="5%" align="left">{{ itemline.product_id }}</td>
+              <td width="5%" align="left">{{ itemline.vendor_product_id }}</td>
               <td width="60%" align="left">{{ itemline.product_name }}</td>
               <td width="25%" align="left">{{ itemline.product_qty }} x {{ itemline.product_measure_name }}</td>
               <td width="10%" align="right">£ {{ (itemline.product_qty * itemline.product_unit_price) | number:2 }}</td>
