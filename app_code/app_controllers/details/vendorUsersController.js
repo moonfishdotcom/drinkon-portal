@@ -8,6 +8,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+
   $scope.newItem = function()
   {
     $('#__id').val("0");
@@ -24,6 +25,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
+
 
   $scope.editItem = function(_item_id)
   {
@@ -47,11 +49,13 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     });
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {

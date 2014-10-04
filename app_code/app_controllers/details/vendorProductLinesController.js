@@ -20,6 +20,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     console.log($scope.product_measures);
   });
 
+
   $scope.fillMeasureList = function(_product_id, cb)
   {
     dbRepository.getVendorProductMeasuresListByProductId(_product_id, function(_error, _data)
@@ -45,6 +46,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     });
   }
   
+
   $scope.setDataFieldsOnEdit = function(itemData)
   {
     $('#__id').val(itemData[0].id);
@@ -64,6 +66,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
   }
 
+
   $scope.productOnChange = function()
   {
     $("#product_measure_id").prop('disabled', false);
@@ -78,6 +81,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     $scope.fillMeasureList(_product_id);
   }
   
+
   $scope.newItem = function()
   {
     $('#__id').val("0");
@@ -96,6 +100,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
+
 
   $scope.editItem = function(_item_id)
   {
@@ -117,11 +122,13 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 	});
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {
