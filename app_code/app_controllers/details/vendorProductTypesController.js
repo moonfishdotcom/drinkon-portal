@@ -13,7 +13,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
   {
     $('#__id').val("0");
 
-    $('#product_type_name').val("");
+    $scope.product_type_name = "";
 
     $scope._product_type_name_ErrorMessage = "";
 
@@ -34,7 +34,9 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
       var itemData = _data.Data;
 
       $('#__id').val(itemData[0].ruid);
-      $('#product_type_name').val(itemData[0].product_type_name);
+
+      $scope.product_type_name = itemData[0].product_type_name;
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -52,8 +54,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
     var __id = $('#__id').val();
     var __pt = "sys_product_types";
 
-    var __vendor_user_id = $("#vendor_user_id").val();
-    var __product_type_name = $("#product_type_name").val();
+    var __product_type_name = $scope.product_type_name;
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
     //Check if we have any mandatory fields missing

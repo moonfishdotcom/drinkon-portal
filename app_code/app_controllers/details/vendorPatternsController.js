@@ -13,7 +13,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
   {
     $('#__id').val("0");
 
-    $('#pattern_name').val("");
+    $scope.pattern_name = "";
 
     $scope._pattern_name_ErrorMessage = "";
 
@@ -34,7 +34,9 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
       var itemData = _data.Data;
 
       $('#__id').val(itemData[0].ruid);
-      $('#pattern_name').val(itemData[0].pattern_name);
+
+      $scope.pattern_name = itemData[0].pattern_name;
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -52,7 +54,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_user_patterns";
 
-    var __pattern_name = $("#pattern_name").val();
+    var __pattern_name = $scope.pattern_name;
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
     //Check if we have any mandatory fields missing

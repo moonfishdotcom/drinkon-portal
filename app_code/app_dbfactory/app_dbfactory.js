@@ -200,6 +200,15 @@ drinkon.factory('dbRepository', function($http)
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
+    getLocations: function(cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_locations"
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     }
     
 

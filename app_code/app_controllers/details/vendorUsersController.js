@@ -8,15 +8,21 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+  dbRepository.getVendorPatterns(_vendor_id, function(_error, _data)
+  {
+    $scope.patterns = _data.Data;
+    console.log($scope.patterns);
+  });
+
 
   $scope.newItem = function()
   {
     $('#__id').val("0");
 
-    $('#vendor_user_id').val("");
-    $('#user_name').val("");
-    $('#user_known_as').val("");
-    $('#user_pattern').val("0");
+    $scope.vendor_user_id = "";
+    $scope.user_name = "";
+    $scope.user_known_as = "";
+    $scope.user_pattern = null;
 
     $scope._vendor_user_id_ErrorMessage = "";
     $scope._user_name_ErrorMessage = "";
@@ -41,10 +47,16 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
       var itemData = _data.Data;
 
       $('#__id').val(itemData[0].id);
-      $('#vendor_user_id').val(itemData[0].vendor_user_id);
-      $('#user_name').val(itemData[0].user_name);
-      $('#user_known_as').val(itemData[0].user_known_as);
-      $('#user_pattern').val(itemData[0].user_pattern_id);
+
+      $scope.vendor_user_id = itemData[0].vendor_user_id;
+      $scope.user_name = itemData[0].user_name;
+      $scope.user_known_as = itemData[0].user_known_as;
+
+      $scope.user_pattern = $scope.patterns.filter(function (item)
+      {
+        return item.ruid == itemData[0].user_pattern_id;
+      })[0];
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -62,11 +74,18 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_users";
 
-    var __vendor_user_id = $("#vendor_user_id").val();
-    var __user_name = $("#user_name").val();
-    var __user_known_as = $("#user_known_as").val();
-    var __user_pattern_id = $("#user_pattern").val();
+    var __vendor_user_id = $scope.vendor_user_id;
+    var __user_name = $scope.user_name;
+    var __user_known_as = $scope.user_known_as;
+    
+    var __user_pattern_id = "0";
+    if ($scope.user_pattern != null)
+    {
+      __user_pattern_id = $scope.user_pattern.ruid;
+    }
+	
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
+
 
     //Check if we have any mandatory fields missing
     $scope._vendor_user_id_ErrorMessage = "";

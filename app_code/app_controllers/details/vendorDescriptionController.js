@@ -20,9 +20,9 @@ drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
       console.log(itemData);
 
       $('#__id').val(itemData[0].id);
-      $('#vendor_line1').val(itemData[0].vendor_line1);
-      $('#vendor_line2').val(itemData[0].vendor_line2);
-      $('#vendor_line3').val(itemData[0].vendor_line3);
+      $scope.vendor_line1 = itemData[0].vendor_line1;
+      $scope.vendor_line2 = itemData[0].vendor_line2;
+      $scope.vendor_line3 = itemData[0].vendor_line3;
 
     });
 
@@ -41,9 +41,9 @@ drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_vendors_description";
 
-    var __vendor_line1 = $("#vendor_line1").val();
-    var __vendor_line2 = $("#vendor_line2").val();
-    var __vendor_line3 = $("#vendor_line3").val();
+    var __vendor_line1 = $scope.vendor_line1;
+    var __vendor_line2 = $scope.vendor_line2;
+    var __vendor_line3 = $scope.vendor_line3;
 
     //Build the json
     var form_json = '';

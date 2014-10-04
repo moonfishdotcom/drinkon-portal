@@ -8,6 +8,12 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+  dbRepository.getLocations(function(_error, _data)
+  {
+    $scope.locations = _data.Data;
+    console.log($scope.locations);
+  });
+
 
   $scope.editItem = function(_vendor_id)
   {
@@ -20,19 +26,24 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
     dbRepository.getVendorDetails(_vendor_id, function(_error, _data)
     {
       var itemData = _data.Data;
-      console.log(itemData);
 
       $('#__id').val(itemData[0].id);
-      $('#vendor_name').val(itemData[0].vendor_name);
-      $('#vendor_addr1').val(itemData[0].vendor_addr1);
-      $('#vendor_addr2').val(itemData[0].vendor_addr2);
-      $('#vendor_addr3').val(itemData[0].vendor_addr3);
-      $('#vendor_addr4').val(itemData[0].vendor_addr4);
-      $('#vendor_postcode').val(itemData[0].vendor_postcode);
-      $('#vendor_phone').val(itemData[0].vendor_phone);
-      $('#vendor_fax').val(itemData[0].vendor_fax);
-      $('#vendor_email').val(itemData[0].vendor_email);
-      $('#location_id').val(itemData[0].location_id);
+      
+      $scope.vendor_name = itemData[0].vendor_name;
+      $scope.vendor_addr1 = itemData[0].vendor_addr1;
+      $scope.vendor_addr2 = itemData[0].vendor_addr2;
+      $scope.vendor_addr3 = itemData[0].vendor_addr3;
+      $scope.vendor_addr4 = itemData[0].vendor_addr4;
+      $scope.vendor_postcode = itemData[0].vendor_postcode;
+      $scope.vendor_phone = itemData[0].vendor_phone;
+      $scope.vendor_fax = itemData[0].vendor_fax;
+      $scope.vendor_email = itemData[0].vendor_email;
+
+      $scope.location_id = $scope.locations.filter(function (item)
+      {
+        return item.id == itemData[0].location_id;
+      })[0];
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
     });
 
@@ -51,16 +62,22 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_vendors";
 
-    var __vendor_name = $("#vendor_name").val();
-    var __vendor_addr1 = $("#vendor_addr1").val();
-    var __vendor_addr2 = $("#vendor_addr2").val();
-    var __vendor_addr3 = $("#vendor_addr3").val();
-    var __vendor_addr4 = $("#vendor_addr4").val();
-    var __vendor_postcode = $("#vendor_postcode").val();
-    var __vendor_phone = $("#vendor_phone").val();
-    var __vendor_fax = $("#vendor_fax").val();
-    var __vendor_email = $("#vendor_email").val();
-    var __location_id = $("#location_id").val();
+    var __vendor_name = $scope.vendor_name;
+    var __vendor_addr1 = $scope.vendor_addr1;
+    var __vendor_addr2 = $scope.vendor_addr2;
+    var __vendor_addr3 = $scope.vendor_addr3;
+    var __vendor_addr4 = $scope.vendor_addr4;
+    var __vendor_postcode = $scope.vendor_postcode;
+    var __vendor_phone = $scope.vendor_phone;
+    var __vendor_fax = $scope.vendor_fax;
+    var __vendor_email = $scope.vendor_email;
+
+    var __location_id = "0";
+    if ($scope.location_id != null)
+    {
+      __location_id = $scope.location_id.id;
+    }
+
 
     //Check if we have any mandatory fields missing
     $scope._vendor_name_ErrorMessage = "";
@@ -113,7 +130,6 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
           window.location.href="#error";
         }
       });
-    
     }
 
   };

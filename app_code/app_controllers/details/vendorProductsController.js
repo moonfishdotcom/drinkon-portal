@@ -19,10 +19,10 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
   {
     $('#__id').val("0");
 
-    $('#vendor_product_id').val("");
-    $('#product_name').val("");
-    $('#product_desc').val("");
-    $('#product_type_id').val("0");
+    $scope.vendor_product_id = "";
+    $scope.product_name = "";
+    $scope.product_desc = "";
+    $scope.product_type_id = null;
 
     $scope._vendor_product_id_ErrorMessage = "";
     $scope._product_name_ErrorMessage = "";
@@ -47,10 +47,16 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
       var itemData = _data.Data;
 
       $('#__id').val(itemData[0].ruid);
-      $('#vendor_product_id').val(itemData[0].vendor_product_id);
-      $('#product_name').val(itemData[0].product_name);
-      $('#product_desc').val(itemData[0].product_desc);
-      $('#product_type_id').val(itemData[0].product_type_id);
+      
+      $scope.vendor_product_id = itemData[0].vendor_product_id;
+      $scope.product_name = itemData[0].product_name;
+      $scope.product_desc = itemData[0].product_desc;
+
+      $scope.product_type_id = $scope.product_types.filter(function (item)
+      {
+        return item.ruid == itemData[0].product_type_id;
+      })[0];
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -68,11 +74,18 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_products";
 
-    var __vendor_product_id = $("#vendor_product_id").val();
-    var __product_name = $("#product_name").val();
-    var __product_desc = $("#product_desc").val();
-    var __product_type_id = $("#product_type_id").val();
+    var __vendor_product_id = $scope.vendor_product_id;
+    var __product_name = $scope.product_name;
+    var __product_desc = $scope.product_desc;
+
+    var __product_type_id = "0";
+    if ($scope.product_type_id != null)
+    {
+      __product_type_id = $scope.product_type_id.ruid;
+    }
+    
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
+
 
     //Check if we have any mandatory fields missing
     $scope._vendor_product_id_ErrorMessage = "";
