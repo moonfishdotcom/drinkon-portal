@@ -30,9 +30,8 @@
             <option value="2">Reassign my orders</option>
           </select>
 
-          <select id="user_id" class="uiLargerText uiDdlCore">
-            <option value="0">Please choose a user...</option>
-            <option ng-repeat="list_item in users" value="{{ list_item.ruid }}">{{ list_item.user_name }}</option>
+          <select class="uiLargerText uiDdlCore" ng-model="user_id" ng-options="user.user_name for user in users">
+            <option value="">Please choose a user...</option>
           </select>
 
         </td>

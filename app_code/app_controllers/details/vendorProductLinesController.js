@@ -2,16 +2,16 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 {
   var _vendor_id = "1";
   
-  dbRepository.getVendorProductsList(_vendor_id, function(_error, _data)
-  {
-    $scope.products = _data.Data;
-    console.log($scope.products);
-  });
-
   dbRepository.getVendorProductLinesList(_vendor_id, function(_error, _data)
   {
     $scope.items = _data.Data;
     console.log($scope.items);
+  });
+
+  dbRepository.getVendorProductsList(_vendor_id, function(_error, _data)
+  {
+    $scope.products = _data.Data;
+    console.log($scope.products);
   });
 
   dbRepository.getVendorProductMeasuresList(_vendor_id, function(_error, _data)
