@@ -21,7 +21,7 @@
         <td><b>actions</b></td>
       </tr>
 
-      <tr ng-repeat="item in items">
+      <tr ng-repeat="item in items|orderBy:'user_known_as'">
 		<td>{{ item.vendor_user_id }}</td>
 		<td>{{ item.user_name }}</td>
 		<td>{{ item.user_known_as }}</td>
@@ -75,16 +75,9 @@
       <tr>
         <td><b>pattern</b><span class="uiMandatoryText">*</span></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="user_pattern" ng-options="pattern.pattern_name for pattern in patterns">
+          <select class="uiSmallText uiDdlCore" ng-model="user_pattern" ng-options="pattern.pattern_name for pattern in patterns|orderBy:'pattern_name'">
             <option value="">Please choose a pattern...</option>
           </select>
-<!--
-          <select ng-model="user_pattern" class="uiSmallText uiDdlCore">
-            <option value="0">Please choose a pattern...</option>
-            <option value="1">Mon-Sat 6pm to 12pm</option>
-            <option value="2">Mon-Fri 4pm to 10pm</option>
-            <option value="3">Sat-Sun 8pm to 12pm</option>
-          </select>-->
           <span class="uiSmallText uiMandatoryText">{{ _user_pattern_ErrorMessage }}</span>
         </td>
       </tr>

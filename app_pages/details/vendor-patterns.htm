@@ -17,7 +17,7 @@
         <td><b>actions</b></td>
       </tr>
 
-      <tr ng-repeat="item in items">
+      <tr ng-repeat="item in items|orderBy:'pattern_name'">
 		<td>{{ item.ruid }}</td>
 		<td>{{ item.pattern_name }}</td>
 		<td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>

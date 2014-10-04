@@ -18,7 +18,7 @@
         <td><b>actions</b></td>
       </tr>
 
-      <tr ng-repeat="item in items">
+      <tr ng-repeat="item in items|orderBy:'product_type_name'">
 		<td>{{ item.product_type_name }}</td>
 		<td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
 		

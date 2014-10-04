@@ -21,7 +21,7 @@
         </td>
       </tr>
 
-      <tr ng-repeat="item in items">
+      <tr ng-repeat="item in items|orderBy:'vendor_product_id'">
         <td>{{ item.vendor_product_id }}</td>
         <td>{{ item.product_name }}</td>
         <td>{{ item.product_type_name }}</td>
@@ -73,7 +73,7 @@
       <tr>
         <td><b>type</b><span class="uiMandatoryText">*</span></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="product_type_id" ng-options="product_type.product_type_name for product_type in product_types">
+          <select class="uiSmallText uiDdlCore" ng-model="product_type_id" ng-options="product_type.product_type_name for product_type in product_types|orderBy:'product_type_name'">
             <option value="">Please choose a product type...</option>
           </select>
           <span class="uiSmallText uiMandatoryText">{{ _product_type_id_ErrorMessage }}</span>
