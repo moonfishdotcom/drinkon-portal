@@ -28,11 +28,13 @@ drinkon.controller('vendorDescriptionController', function($scope, dbRepository)
 
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {

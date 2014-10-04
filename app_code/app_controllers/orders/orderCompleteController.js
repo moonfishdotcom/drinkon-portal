@@ -12,6 +12,7 @@ drinkon.controller('orderCompleteController', function($scope, $location, dbRepo
     console.log($scope.items);
   });
 
+
   $scope.completeOrder = function(_order_id)
   {
     var __id = _order_id;

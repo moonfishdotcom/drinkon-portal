@@ -8,6 +8,7 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+
   $scope.editItem = function(_vendor_id)
   {
     $scope._vendor_name_ErrorMessage = "";
@@ -37,11 +38,13 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
 
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {

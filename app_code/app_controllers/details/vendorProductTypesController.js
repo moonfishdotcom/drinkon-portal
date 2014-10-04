@@ -8,6 +8,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
     console.log($scope.items);
   });
 
+
   $scope.newItem = function()
   {
     $('#__id').val("0");
@@ -19,6 +20,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
+
 
   $scope.editItem = function(_item_id)
   {
@@ -37,11 +39,13 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
     });
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {
@@ -62,7 +66,23 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
       __canSaveData = __canSaveData + 1;
       $scope._product_type_name_ErrorMessage = "this field is mandatory";
     }
-    //TODO: We need to check if the name has already been used
+
+    //Check if the key value has already been used
+    var _itemCount = 0;
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__product_type_name == value.product_type_name && __id != value.ruid)
+      {
+        _itemCount = _itemCount + 1;
+      }
+    })
+
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_type_name_ErrorMessage = "this type name has already been used";
+	}
+
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)

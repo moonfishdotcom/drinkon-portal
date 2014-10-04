@@ -8,6 +8,7 @@ drinkon.controller('logoutController', function($scope, dbRepository)
     console.log($scope.users);
   });
 
+
   $scope.actionOnChange = function()
   {
     $("#user_id").prop('disabled', true);
@@ -28,6 +29,7 @@ drinkon.controller('logoutController', function($scope, dbRepository)
     }
 
   }
+
 
   $scope.doLogout = function()
   {

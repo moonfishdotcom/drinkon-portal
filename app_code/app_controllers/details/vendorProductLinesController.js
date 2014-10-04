@@ -2,16 +2,16 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 {
   var _vendor_id = "1";
   
-  dbRepository.getVendorProductLinesList(_vendor_id, function(_error, _data)
-  {
-    $scope.items = _data.Data;
-    console.log($scope.items);
-  });
-
   dbRepository.getVendorProductsList(_vendor_id, function(_error, _data)
   {
     $scope.products = _data.Data;
     console.log($scope.products);
+  });
+
+  dbRepository.getVendorProductLinesList(_vendor_id, function(_error, _data)
+  {
+    $scope.items = _data.Data;
+    console.log($scope.items);
   });
 
   dbRepository.getVendorProductMeasuresList(_vendor_id, function(_error, _data)
@@ -187,6 +187,27 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       __canSaveData = __canSaveData + 1;
       $scope._product_unit_price_ErrorMessage = "this field must be greater than zero";
     }
+
+    //Check if the key value has already been used
+    var _itemCount = 0;
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__product_id == value.product_id && __product_measure_id == value.product_measure_id && __id != value.id)
+      {
+        _itemCount = _itemCount + 1;
+      console.log("In field:",__product_id);
+      console.log("In array:",value.product_id);
+      console.log("In field:",__product_measure_id);
+      console.log("In array:",value.product_measure_id);
+      }
+    })
+
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_measure_id_ErrorMessage = "this measure name has already been used with this product";
+	}
+
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)

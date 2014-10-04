@@ -8,11 +8,13 @@ drinkon.controller('ordersController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+
   $scope.moveAcceptOrder = function(_order_id)
   {
     console.log(_order_id);
     window.location.href="#orders/accept/" + _order_id + "";
   };
+
 
   $scope.moveCompleteOrder = function(_order_id)
   {

@@ -8,6 +8,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+
   $scope.newItem = function()
   {
     $('#__id').val("0");
@@ -19,6 +20,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
+
 
   $scope.editItem = function(_item_id)
   {
@@ -37,11 +39,13 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     });
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {
@@ -62,20 +66,22 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
       $scope._pattern_name_ErrorMessage = "this field is mandatory";
     }
 
-    if (__id == "0")
+    //Check if the key value has already been used
+    var _itemCount = 0;
+    angular.forEach($scope.items,function(value,index)
     {
-      dbRepository.getVendorPatternDetailsByName(_vendor_id, __pattern_name, function(_error, _data)
+      if (__pattern_name == value.pattern_name && __id != value.ruid)
       {
-        var itemData = _data.Data;
+        _itemCount = _itemCount + 1;
+      }
+    })
 
-        if (itemData.length > 0)
-        {
-          //If the length is greater than one then the id is already used.
-          __canSaveData = __canSaveData + 1;
-          $scope._pattern_name_ErrorMessage = "this pattern name has already been used";
-        }
-      });
-    }
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._pattern_name_ErrorMessage = "this pattern name has already been used";
+	}
+
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)

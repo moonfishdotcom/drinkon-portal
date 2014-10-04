@@ -80,21 +80,23 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
       __canSaveData = __canSaveData + 1;
       $scope._vendor_user_id_ErrorMessage = "this field is mandatory";
     }
-    
-    if (__id == "0")
-    {
-      dbRepository.getVendorUserDetailsByVendorUserId(_vendor_id, __vendor_user_id, function(_error, _data)
-      {
-        var itemData = _data.Data;
 
-        if (itemData.length > 0)
-        {
-          //If the length is greater than one then the id is already used.
-          __canSaveData = __canSaveData + 1;
-          $scope._vendor_user_id_ErrorMessage = "this user id has already been used";
-        }
-      });
-    }
+    //Check if the key value has already been used
+    var _itemCount = 0;
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__vendor_user_id == value.vendor_user_id && __id != value.ruid)
+      {
+        _itemCount = _itemCount + 1;
+      }
+    })
+
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_user_id_ErrorMessage = "this user id has already been used";
+	}
+
 
     if (__user_name == "")
     {

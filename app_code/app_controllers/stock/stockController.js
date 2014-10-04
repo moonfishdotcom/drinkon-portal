@@ -8,6 +8,7 @@ drinkon.controller('stockController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+
   $scope.stockTakeOff = function(_product_id)
   {
     var __id = _product_id;
@@ -34,6 +35,7 @@ drinkon.controller('stockController', function($scope, dbRepository)
       }
     });
   };
+
 
   $scope.stockPutOn = function(_product_id)
   {

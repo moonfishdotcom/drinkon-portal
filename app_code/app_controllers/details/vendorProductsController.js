@@ -14,6 +14,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     console.log($scope.product_types);
   });
 
+
   $scope.newItem = function()
   {
     $('#__id').val("0");
@@ -30,6 +31,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
   }
+
 
   $scope.editItem = function(_item_id)
   {
@@ -53,11 +55,13 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     });
   }
 
+
   $scope.cancelItem = function()
   {
     document.getElementById("pagePanel").style = "display:block;";
     document.getElementById("pageEditPanel").style = "display:none;";
   }
+
 
   $scope.saveItem = function()
   {
@@ -82,20 +86,53 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
       __canSaveData = __canSaveData + 1;
       $scope._vendor_product_id_ErrorMessage = "this field is mandatory";
     }
-    //TODO: We need to check if the id has already been used
+
+    //Check if the key value has already been used
+    var _itemCount = 0;
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__vendor_product_id == value.vendor_product_id && __id != value.ruid)
+      {
+        _itemCount = _itemCount + 1;
+      }
+    })
+
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_product_id_ErrorMessage = "this product id has already been used";
+	}
+
 
     if (__product_name == "")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_name_ErrorMessage = "this field is mandatory";
     }
-    //TODO: Do we need to check if the name has already been used
+
+    //Check if the key value has already been used
+    var _itemCount2 = 0;
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__product_name == value.product_name && __id != value.ruid)
+      {
+        _itemCount2 = _itemCount2 + 1;
+      }
+    })
+
+    if (_itemCount2 > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_name_ErrorMessage = "this product name has already been used";
+	}
+
 
     if (__product_type_id == "0")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_type_id_ErrorMessage = "you must choose a type";
     }
+
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)
