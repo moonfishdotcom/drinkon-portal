@@ -101,6 +101,11 @@ $routeProvider
 	controller: 'vendorProductMeasuresController'
   })
 
+  .when('/details/vendor-product-specials', {
+	templateUrl: 'app_pages/details/vendor-product-specials.htm',
+	controller: 'vendorProductSpecialsController'
+  })
+
   .when('/details/vendor-product-types', {
 	templateUrl: 'app_pages/details/vendor-product-types.htm',
 	controller: 'vendorProductTypesController'
