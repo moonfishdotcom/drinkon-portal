@@ -81,12 +81,19 @@
 
       if ($this->i != "")
       {
-        $sql .= "AND id=$this->i ";
+        $sql .= "AND id=$this->i OR id=0 ";
       }
       
       if ($this->s1 != "")
       {
-        $sql .= "AND $this->s1=$this->s2 ";
+        if ($this->s1 == "vendor_id")
+        {
+          $sql .= "AND ( $this->s1=$this->s2 OR $this->s1=0 ) ";
+        }
+        else
+        {
+          $sql .= "AND $this->s1=$this->s2 ";
+        }
       }
 
       if ($this->s3 != "")

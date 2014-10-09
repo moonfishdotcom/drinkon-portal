@@ -28,8 +28,8 @@
         <td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
 
         <td>
-          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.ruid);">edit</button>
-          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" onclick="">view</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.id);" ng-hide="item.is_fixed">edit</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="" ng-hide="true">view</button>
         </td>
 
       </tr>

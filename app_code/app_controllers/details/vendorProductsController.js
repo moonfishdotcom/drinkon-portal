@@ -85,6 +85,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     }
     
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
+    var __is_fixed = "0";
 
 
     //Check if we have any mandatory fields missing
@@ -161,7 +162,8 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
       form_json += '"product_desc": "' + __product_desc + '",';
       form_json += '"product_type_id": "' + __product_type_id + '",';
       form_json += '"product_status_id": "1",';
-      form_json += '"is_active": "' + __is_active + '" ';
+      form_json += '"is_active": "' + __is_active + '", ';
+      form_json += '"is_fixed": "' + __is_fixed + '" ';
       form_json += '}]}';
 
       var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);

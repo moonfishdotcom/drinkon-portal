@@ -23,7 +23,7 @@ drinkon.factory('dbRepository', function($http)
 
     getStockList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -33,7 +33,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorDetails: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_with_location&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_with_location&s1=id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -42,7 +42,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorDescription: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_description&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_description&s1=id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -51,7 +51,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorPatterns: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendor_patterns&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendor_patterns&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -78,7 +78,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorProductsList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -87,7 +87,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorProductDetails: function(_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&s1=ruid&s2=" + _id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&s1=id&s2=" + _id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -114,7 +114,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorProductMeasuresList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -141,7 +141,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorProductMeasureDetails: function(_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&s1=ruid&s2=" + _id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&s1=id&s2=" + _id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -150,7 +150,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorProductTypesList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_types&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_types&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -159,7 +159,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorProductTypeDetails: function(_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_types&s1=ruid&s2=" + _id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_types&s1=id&s2=" + _id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -177,7 +177,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorUsers: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_users_with_patterns&i=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_users_with_patterns&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -186,7 +186,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorUserDetails: function(_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_users&i=" + _id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_users&s1=id&s2=" + _id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})

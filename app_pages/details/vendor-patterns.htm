@@ -18,14 +18,14 @@
       </tr>
 
       <tr ng-repeat="item in items|orderBy:'pattern_name'">
-		<td>{{ item.ruid }}</td>
+		<td>{{ item.id }}</td>
 		<td>{{ item.pattern_name }}</td>
 		<td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
 		
 		<td>
 
           <div>
-            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.ruid);">edit</button>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.id);">edit</button>
           </div>
 		
 		</td>
