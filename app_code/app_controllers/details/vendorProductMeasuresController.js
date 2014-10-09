@@ -41,11 +41,11 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
     {
       var itemData = _data.Data;
 
-      $('#__id').val(itemData[0].ruid);
+      $('#__id').val(itemData[0].id);
 
       $scope.product_type = $scope.product_types.filter(function (item)
       {
-        return item.ruid == itemData[0].product_type_id;
+        return item.id == itemData[0].product_type_id;
       })[0];
 
       $scope.product_measure = itemData[0].product_measure_name;
@@ -70,7 +70,7 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
     var __product_type_id = "0";    
     if ($scope.product_type != null)
     {
-      __product_type_id = $scope.product_type.ruid;
+      __product_type_id = $scope.product_type.id;
 	}
 
     var __product_measure_name = "";    
@@ -105,7 +105,7 @@ drinkon.controller('vendorProductMeasuresController', function($scope, dbReposit
     var _itemCount = 0;
     angular.forEach($scope.items,function(value,index)
     {
-      if (__product_measure_name == value.product_measure_name && __product_type_id == value.product_type_id && __id != value.ruid)
+      if (__product_measure_name == value.product_measure_name && __product_type_id == value.product_type_id && __id != value.id)
       {
         _itemCount = _itemCount + 1;
       }

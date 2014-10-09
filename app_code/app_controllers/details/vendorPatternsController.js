@@ -33,7 +33,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     {
       var itemData = _data.Data;
 
-      $('#__id').val(itemData[0].ruid);
+      $('#__id').val(itemData[0].id);
 
       $scope.pattern_name = itemData[0].pattern_name;
 
@@ -72,7 +72,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     var _itemCount = 0;
     angular.forEach($scope.items,function(value,index)
     {
-      if (__pattern_name == value.pattern_name && __id != value.ruid)
+      if (__pattern_name == value.pattern_name && __id != value.id)
       {
         _itemCount = _itemCount + 1;
       }

@@ -54,7 +54,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
 
       $scope.user_pattern = $scope.patterns.filter(function (item)
       {
-        return item.ruid == itemData[0].user_pattern_id;
+        return item.id == itemData[0].user_pattern_id;
       })[0];
 
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
@@ -81,7 +81,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     var __user_pattern_id = "0";
     if ($scope.user_pattern != null)
     {
-      __user_pattern_id = $scope.user_pattern.ruid;
+      __user_pattern_id = $scope.user_pattern.id;
     }
 	
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
@@ -104,7 +104,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     var _itemCount = 0;
     angular.forEach($scope.items,function(value,index)
     {
-      if (__vendor_user_id == value.vendor_user_id && __id != value.ruid)
+      if (__vendor_user_id == value.vendor_user_id && __id != value.id)
       {
         _itemCount = _itemCount + 1;
       }

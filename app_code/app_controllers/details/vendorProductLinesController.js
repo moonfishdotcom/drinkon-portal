@@ -33,7 +33,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
       for (i = 0; i < itemData.length; i++)
       {
-        $scope.product_measures.push({ruid:itemData[i].measure_id, product_measure_name:itemData[i].product_measure_name});
+        $scope.product_measures.push({id:itemData[i].measure_id, product_measure_name:itemData[i].product_measure_name});
         console.log(itemData[i].measure_id);
         console.log(itemData[i].product_measure_name);
       }
@@ -53,12 +53,12 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     $scope.product = $scope.products.filter(function (item)
     {
-      return item.ruid == itemData[0].product_id;
+      return item.id == itemData[0].product_id;
     })[0];
 
     $scope.product_measure = $scope.product_measures.filter(function (item)
     {
-      return item.ruid == itemData[0].product_measure_id;
+      return item.id == itemData[0].product_measure_id;
     })[0];
 
     $scope.product_unit_price = itemData[0].product_unit_price;
@@ -75,7 +75,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     var _product_id = "0";
     if ($scope.product != null)
     {
-      _product_id = $scope.product.ruid;
+      _product_id = $scope.product.id;
 	}
 
     $scope.fillMeasureList(_product_id);
@@ -138,13 +138,13 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     var __product_id = "0";    
     if ($scope.product != null)
     {
-      __product_id = $scope.product.ruid;
+      __product_id = $scope.product.id;
 	}
 
     var __product_measure_id = "0";
     if ($scope.product_measure != null)
     {
-      __product_measure_id = $scope.product_measure.ruid;
+      __product_measure_id = $scope.product_measure.id;
 	}
 
     var __product_unit_price = $scope.product_unit_price;

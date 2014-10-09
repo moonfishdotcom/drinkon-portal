@@ -81,7 +81,7 @@
         $data[$c1]->is_active = $header['is_active'];
         $data[$c1]->order_total = $header['order_total'];
         
-        $result2 = mysqli_query($con, "SELECT * FROM vw_order_lines WHERE id=" . $header['id'] . " ");
+        $result2 = mysqli_query($con, "SELECT * FROM vw_order_lines WHERE order_id=" . $header['id'] . " ");
 
         $c2 = 0;
         while($lines = mysqli_fetch_array($result2))

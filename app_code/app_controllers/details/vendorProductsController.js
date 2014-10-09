@@ -46,7 +46,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     {
       var itemData = _data.Data;
 
-      $('#__id').val(itemData[0].ruid);
+      $('#__id').val(itemData[0].id);
       
       $scope.vendor_product_id = itemData[0].vendor_product_id;
       $scope.product_name = itemData[0].product_name;
@@ -54,7 +54,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
 
       $scope.product_type_id = $scope.product_types.filter(function (item)
       {
-        return item.ruid == itemData[0].product_type_id;
+        return item.id == itemData[0].product_type_id;
       })[0];
 
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
@@ -81,7 +81,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     var __product_type_id = "0";
     if ($scope.product_type_id != null)
     {
-      __product_type_id = $scope.product_type_id.ruid;
+      __product_type_id = $scope.product_type_id.id;
     }
     
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
@@ -105,7 +105,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     var _itemCount = 0;
     angular.forEach($scope.items,function(value,index)
     {
-      if (__vendor_product_id == value.vendor_product_id && __id != value.ruid)
+      if (__vendor_product_id == value.vendor_product_id && __id != value.id)
       {
         _itemCount = _itemCount + 1;
       }
@@ -128,7 +128,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     var _itemCount2 = 0;
     angular.forEach($scope.items,function(value,index)
     {
-      if (__product_name == value.product_name && __id != value.ruid)
+      if (__product_name == value.product_name && __id != value.id)
       {
         _itemCount2 = _itemCount2 + 1;
       }
