@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    
+    <title>drinkon</title>
+    <link rel="Stylesheet" href="stylesheet2.css" />
+
+    <script type="text/javascript" src="external/jquery/jquery-2.1.1.min.js"></script>
+
+    <script type="text/javascript" src="sys_config_system.js"></script>
+    <script type="text/javascript" src="sys_config.js"></script>
+
+    <script type="text/javascript" src="app_code/app_library.js"></script>
+
+  </head>
+
+
+  <body ng-app="drinkon" class="uiPageLayout">
+
+
+  <!-- Header -->
+  <div>
+
+    <div class="uiHeadPanel">
+      <div style="float:left; padding-left:15px;">
+        <span class="uiBannerText_WHITE">drinkon</span>
+      </div>
+      <div style="float:right; padding-top:15px; padding-right:15px;">
+
+        <div style="float:left; padding-right:10px;">
+	      <div id="_user_name" class="uiBigText" style="color:#000000;">TEMP-Tim Harris</div>
+	    </div>
+
+	    <div style="float:right; padding-right:10px;">
+
+          <div>
+            <button class="uiButtonBase uiButtonLarge uiButtonLogout uiBannerText_BLACK" onclick="window.location.href='#logout';">logout</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="uiHeadPanelActions" style="height:2px;"></div>
+
+
+    <div class="" style="height:10px;"></div>
+
+
+    <!-- button panel -->
+    <div class="" style="">
+
+      <div style="width:98%; margin-left:auto; margin-right:auto;">
+
+        <div>
+          <button class="uiButtonBase uiDetailsButton uiBannerText_BLACK">Ben Lacey</button>
+        </div>
+
+        <div>
+          <button class="uiButtonBase uiDetailsButton uiBannerText_BLACK">Johnathan Smith</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="clear:both; height:1px;"></div>
+
+  </div>
+  <!-- /Header -->
+
+
+
+  <div ng-view></div>
+
+
+
+  <script src="angularjs/angular.min.js"></script>
+  <script src="angularjs/angular-route.min.js"></script>
+  <script src="angularjs/angular-animate.min.js"></script>
+
+  <script src="app_code/app_main.js"></script>
+  <script src="app_code/app_controllers/homeController.js"></script>
+
+  <script src="app_code/app_controllers/errorController.js"></script>
+
+  <script src="app_code/app_controllers/orders/ordersController.js"></script>
+  <script src="app_code/app_controllers/orders/orderAcceptController.js"></script>
+  <script src="app_code/app_controllers/orders/orderCompleteController.js"></script>
+
+  <script src="app_code/app_controllers/stock/stockController.js"></script>
+
+  <script src="app_code/app_controllers/socialController.js"></script>
+  <script src="app_code/app_controllers/social/socialNotificationsController.js"></script>
+  <script src="app_code/app_controllers/social/socialReviewsController.js"></script>
+  
+  <script src="app_code/app_controllers/detailsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorAccountsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorDescriptionController.js"></script>
+  <script src="app_code/app_controllers/details/vendorDetailsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorLocationController.js"></script>
+  <script src="app_code/app_controllers/details/vendorPatternsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorProductsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorProductLinesController.js"></script>
+  <script src="app_code/app_controllers/details/vendorProductMeasuresController.js"></script>
+  <script src="app_code/app_controllers/details/vendorProductSpecialsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorProductTypesController.js"></script>
+  <script src="app_code/app_controllers/details/vendorReportsController.js"></script>
+  <script src="app_code/app_controllers/details/vendorRolesController.js"></script>
+  <script src="app_code/app_controllers/details/vendorSocialController.js"></script>
+  <script src="app_code/app_controllers/details/vendorUsersController.js"></script>
+
+  <script src="app_code/app_controllers/logonController.js"></script>
+  <script src="app_code/app_controllers/logoutController.js"></script>
+
+  <script src="app_code/app_routing/app_routes.js"></script>
+
+  <script src="app_code/app_dbfactory/app_dbfactory.js"></script>
+
+  </body>
+</html>
