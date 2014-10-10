@@ -7,32 +7,39 @@
 
 
       <table cellspacing="5" cellpadding="5" class="uiLargerText">
-      <tr><td><b>id</b></td><td><b>product</b></td><td><b>type</b></td><td><b>status</b></td><td><b>actions</b></td></tr>
+      <tr>
+        <td><b>id</b></td>
+        <td><b>product</b></td>
+        <td><b>type</b></td>
+        <td><b>measure</b></td>
+        <td><b>status</b></td>
+        <td><b>actions</b></td>
+      </tr>
 
-        <tr ng-repeat="item in items">
-          <td>{{ item.vendor_product_id }}</td>
-          <td>{{ item.product_name }}</td>
-          <td>{{ item.product_type_name }}</td>
-          <td>{{ item.product_status_id === "1" ? "Available" : "Unavailable"}}</td>
+      <tr ng-repeat="item in items">
+        <td>{{ item.vendor_product_id }}</td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.product_type_name }}</td>
+        <td>{{ item.product_measure_name }}</td>
+        <td>{{ item.is_active === "1" ? "Available" : "Unavailable"}}</td>
 
-          <td>
+        <td>
 
-            <div style="margin-top:2px;">
-              <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonYes uiLargerText': item.product_status_id == '0', 'uiElementDisplayNone': item.product_status_id != '0' }" ng-click="stockPutOn(item.id);">put on</button>
-            </div>
+          <div style="margin-top:2px;">
+            <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonYes uiLargerText': item.is_active == '0', 'uiElementDisplayNone': item.is_active != '0' }" ng-click="stockPutOn(item.id);">put on</button>
+          </div>
 
-            <div style="margin-top:2px;">
-              <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonNo uiLargerText': item.product_status_id == '1', 'uiElementDisplayNone': item.product_status_id != '1' }" ng-click="stockTakeOff(item.id);">take off</button>
-            </div>
+          <div style="margin-top:2px;">
+            <button ng-class="{ 'uiButtonBase uiButtonMedium uiButtonNo uiLargerText': item.is_active == '1', 'uiElementDisplayNone': item.is_active != '1' }" ng-click="stockTakeOff(item.id);">take off</button>
+          </div>
 
-          </td>
+        </td>
 
-        </tr>
+      </tr>
+      </table>
 
-        </table>
 
-
-	</div>
+    </div>
   </div>
 
 </div>

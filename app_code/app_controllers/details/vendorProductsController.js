@@ -161,7 +161,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
       form_json += '"product_name": "' + __product_name + '",';
       form_json += '"product_desc": "' + __product_desc + '",';
       form_json += '"product_type_id": "' + __product_type_id + '",';
-      form_json += '"product_status_id": "1",';
+//    form_json += '"product_status_id": "1",';
       form_json += '"is_active": "' + __is_active + '", ';
       form_json += '"is_fixed": "' + __is_fixed + '" ';
       form_json += '}]}';

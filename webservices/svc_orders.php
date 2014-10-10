@@ -95,6 +95,7 @@
           $data[$c1]->order[$c2]->product_qty = $lines['product_qty'];
           $data[$c1]->order[$c2]->product_unit_price = $lines['product_unit_price'];
           $data[$c1]->order[$c2]->is_active = $lines['is_active'];
+          $data[$c1]->order[$c2]->stock_active = $lines['stock_active'];
 
           array_push($data->order);
           $c2++;

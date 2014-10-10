@@ -27,7 +27,7 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
     {
       var itemData = _data.Data;
 
-      $('#__id').val(itemData[0].id);
+      $('#__id').val(itemData[0].vendor_id);
       
       $scope.vendor_name = itemData[0].vendor_name;
       $scope.vendor_addr1 = itemData[0].vendor_addr1;

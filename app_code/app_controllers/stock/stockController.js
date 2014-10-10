@@ -9,10 +9,10 @@ drinkon.controller('stockController', function($scope, dbRepository)
   });
 
 
-  $scope.stockTakeOff = function(_product_id)
+  $scope.stockTakeOff = function(_product_line_id)
   {
-    var __id = _product_id;
-    var __pt = "sys_products";
+    var __id = _product_line_id;
+    var __pt = "sys_product_lines";
     var __status = "0";
   
     //Build the json
@@ -20,7 +20,7 @@ drinkon.controller('stockController', function($scope, dbRepository)
     form_json += '{"data": [{';
     form_json += '"id": "' + __id + '",';
     form_json += '"pt": "' + __pt + '",';
-    form_json += '"product_status_id": "' + __status + '" ';
+    form_json += '"is_active": "' + __status + '" ';
     form_json += '}]}';
 
     var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
@@ -37,10 +37,10 @@ drinkon.controller('stockController', function($scope, dbRepository)
   };
 
 
-  $scope.stockPutOn = function(_product_id)
+  $scope.stockPutOn = function(_product_line_id)
   {
-    var __id = _product_id;
-    var __pt = "sys_products";
+    var __id = _product_line_id;
+    var __pt = "sys_product_lines";
     var __status = "1";
   
     //Build the json
@@ -48,7 +48,7 @@ drinkon.controller('stockController', function($scope, dbRepository)
     form_json += '{"data": [{';
     form_json += '"id": "' + __id + '",';
     form_json += '"pt": "' + __pt + '",';
-    form_json += '"product_status_id": "' + __status + '" ';
+    form_json += '"is_active": "' + __status + '" ';
     form_json += '}]}';
 
     var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);

@@ -2,15 +2,6 @@ drinkon.factory('dbRepository', function($http)
 {
   return {
 
-    getOrderDetails: function(_id, cb)
-    {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ORDER&q=" + _id + "";
-
-      $http.get(url)
-        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
-        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
-    },
-
     getOrdersList: function(_vendor_id, cb)
     {
 	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ALL&q=" + _vendor_id + ""
@@ -21,9 +12,19 @@ drinkon.factory('dbRepository', function($http)
     },
 
 
+    getOrderDetails: function(_id, cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_orders.php?v=GET&s=ORDER&q=" + _id + "";
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
     getStockList: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&s1=vendor_id&s2=" + _vendor_id + ""
+      //var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_products_with_types&s1=vendor_id&s2=" + _vendor_id + ""
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_lines_with_descs&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
@@ -33,7 +34,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorDetails: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_with_location&s1=id&s2=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_vendors_with_location&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})

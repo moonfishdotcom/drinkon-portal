@@ -135,6 +135,8 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     var __id = $('#__id').val();
     var __pt = "sys_product_lines";
 
+    var __vendor_id = _vendor_id;
+
     var __product_id = "0";    
     if ($scope.product != null)
     {
@@ -217,6 +219,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       form_json += '{"data": [{';
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
+      form_json += '"vendor_id": "' + __vendor_id + '",';
       form_json += '"product_id": "' + __product_id + '",';
       form_json += '"product_measure_id": "' + __product_measure_id + '",';
       form_json += '"product_unit_price": "' + __product_unit_price + '",';
