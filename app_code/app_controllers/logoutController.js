@@ -1,6 +1,7 @@
 drinkon.controller('logoutController', function($scope, dbRepository)
 {
-  var _vendor_id = "1";
+//  var _vendor_id = "1";
+  var _vendor_id = __cookie_vendor_id;
   
   dbRepository.getVendorUsers(_vendor_id, function(_error, _data)
   {
@@ -40,7 +41,7 @@ drinkon.controller('logoutController', function($scope, dbRepository)
     var __action_id = $("#action_id").val();
     var __user_id = $("#user_id").val();
     
-    window.location.href='logon.htm';
+    window.location.href='home.htm#/';
   }
 
 });

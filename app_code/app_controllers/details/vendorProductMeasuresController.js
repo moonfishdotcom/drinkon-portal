@@ -1,6 +1,7 @@
 drinkon.controller('vendorProductMeasuresController', function($scope, dbRepository)
 {
-  var _vendor_id = "1";
+//  var _vendor_id = "1";
+  var _vendor_id = __cookie_vendor_id;
 
   dbRepository.getVendorProductMeasuresList(_vendor_id, function(_error, _data)
   {

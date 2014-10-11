@@ -2,6 +2,11 @@ drinkon.config(function($routeProvider) {
 $routeProvider
 
   .when('/', {
+	templateUrl: 'app_pages/logon.htm',
+	controller: 'logonController'
+  })
+
+  .when('/dashboard', {
 	templateUrl: 'app_pages/dashboard.htm',
 	controller: 'homeController'
   })

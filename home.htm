@@ -57,7 +57,7 @@
       <div style="width:98%; margin-left:auto; margin-right:auto;">
 
         <div>
-          <button class="uiButtonBase uiButtonLarge uiButtonHome uiBannerText_BLACK" onclick="window.location.href='#';">home</button>
+          <button class="uiButtonBase uiButtonLarge uiButtonHome uiBannerText_BLACK" onclick="window.location.href='#dashboard';">home</button>
         </div>
 
         <div>
@@ -132,6 +132,26 @@
   <script src="app_code/app_routing/app_routes.js"></script>
 
   <script src="app_code/app_dbfactory/app_dbfactory.js"></script>
+
+  
+  <script>
+  //This is dummy code and must be removed
+  var __cookie_vendor_id = "";
+  
+  var _cookie = document.cookie.split("=");
+  
+  if (_cookie.length == 1)
+  {
+    console.log("No Cookie data");
+  }
+  else
+  {
+    var _cookie_data = _cookie[1].split(";");
+
+    __cookie_vendor_id = _cookie_data[0];
+    console.log("Vendor = ", __cookie_vendor_id);
+  }
+  </script>
 
   </body>
 </html>
