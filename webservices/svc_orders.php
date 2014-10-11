@@ -49,7 +49,15 @@
       $var = array();
 
       //$sql1 = "SELECT * FROM vw_order_header WHERE 1=1 ";
-      $sql1 = "SELECT * FROM vw_order_header_with_totals WHERE 1=1 ";
+      //$sql1 = "SELECT * FROM vw_order_header_with_totals WHERE 1=1 ";
+      $sql1 = "";
+      $sql1 .= "SELECT ";
+      $sql1 .= "id, vendor_id, order_number, order_cust_id, order_cust_name, ";
+      $sql1 .= "DATE_FORMAT(order_reqd_for,'%W the %dth of %M at %h:%i %p') AS order_reqd_for, ";
+      $sql1 .= "order_status_id, order_status_name, order_owner_id, user_known_as, order_total ";
+      $sql1 .= "FROM vw_order_header_with_totals ";
+      $sql1 .= "WHERE 1=1 ";
+
 
       if ($this->s == "ALL")
       {
