@@ -22,19 +22,19 @@
       </tr>
 
       <tr ng-repeat="item in items|orderBy:'vendor_product_id'">
-		<td>{{ item.vendor_product_id }}</td>
-		<td>{{ item.product_name }}</td>
-		<td>{{ item.product_measure_name }}</td>
-		<td align="right">£ {{ item.product_unit_price | number:2 }}</td>
-		<td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
+        <td>{{ item.vendor_product_id }}</td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.product_measure_name }}</td>
+        <td align="right">£ {{ item.product_unit_price | number:2 }}</td>
+        <td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
 		
-		<td>
+        <td>
 
           <div>
             <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.id);">edit</button>
           </div>
 		
-		</td>
+        </td>
 		
       </tr>
 
@@ -55,42 +55,85 @@
       </tr>
 
       <tr>
-        <td><b>product</b><span class="uiMandatoryText">*</span></td>
-        <td>
-          <select class="uiSmallText uiDdlCore" ng-model="product" ng-options="product.product_name for product in products|orderBy:'product_name'" ng-change="productOnChange()">
-            <option value="">Please choose a product...</option>
-          </select>
-          <span class="uiSmallText uiMandatoryText">{{ _product_id_ErrorMessage }}</span>
+        <td valign="top">
+        
+        <table cellspacing="5" cellpadding="5">
+        <tr>
+          <td><b>product</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="product" ng-options="product.product_name for product in products|orderBy:'product_name'" ng-change="productOnChange()">
+              <option value="">Please choose a product...</option>
+            </select>
+            <span class="uiSmallText uiMandatoryText">{{ _product_id_ErrorMessage }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>measure</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="product_measure" ng-options="measure.product_measure_name for measure in product_measures|orderBy:'product_measure_name'">
+              <option value="">Please choose a measure...</option>
+            </select>
+            <span class="uiSmallText uiMandatoryText">{{ _product_measure_id_ErrorMessage }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>unit price</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <input class="uiFieldCore uiSmallText" ng-model="product_unit_price" type="text" maxlength="5" size="5" />
+            <span class="uiSmallText uiMandatoryText">{{ _product_unit_price_ErrorMessage }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>active</b></td>
+          <td><input id="is_active" type="checkbox"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
+            <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+          </td>
+        </tr>
+        </table>        
+        
         </td>
+
+      
+        <td valign="top">
+        
+        <table cellspacing="5" cellpadding="5">
+        <tr>
+          <td><b>start</b></td>
+          <td><b>end</b></td>
+          <td><b>price</b></td>
+          <td><b>desc</b></td>
+          <td><b>actions</b></td>
+        </tr>
+        <tr>
+          <td><input class="uiFieldCore uiSmallText" ng-model="new_price_start" type="text" maxlength="10" size="4" /></td>
+          <td><input class="uiFieldCore uiSmallText" ng-model="new_price_end" type="text" maxlength="10" size="4" /></td>
+          <td><input class="uiFieldCore uiSmallText" ng-model="new_price" type="text" maxlength="5" size="3" /></td>
+          <td><input class="uiFieldCore uiSmallText" ng-model="new_price_desc" type="text" maxlength="50" size="10" /></td>
+          <td>
+            <button class="uiButtonBase uiButtonSmall uiButtonYes uiLargerText" ng-click="savePriceLine();">add</button>
+            <button class="uiButtonBase uiButtonSmall uiButtonNo uiLargerText" ng-click="cancelPriceLine();">clear</button>
+          </td>
+        </tr>
+
+        <tr ng-repeat="price in line_prices | orderBy:['-product_price_end','product_price_start']">
+          <td>{{ price.product_price_start }}</td>
+          <td>{{ price.product_price_end }}</td>
+          <td align="right">£ {{ price.product_unit_price | number:2 }}</td>
+          <td colspan="2">{{ price.product_price_desc }}</td>
+        </tr>
+
+        </table>
+
+        </td>      
+
+      
       </tr>
 
-      <tr>
-        <td><b>measure</b><span class="uiMandatoryText">*</span></td>
-        <td>
-          <select class="uiSmallText uiDdlCore" ng-model="product_measure" ng-options="measure.product_measure_name for measure in product_measures|orderBy:'product_measure_name'">
-            <option value="">Please choose a measure...</option>
-          </select>
-          <span class="uiSmallText uiMandatoryText">{{ _product_measure_id_ErrorMessage }}</span>
-        </td>
-      </tr>
-      <tr>
-        <td><b>unit price</b><span class="uiMandatoryText">*</span></td>
-        <td>
-          <input class="uiFieldCore uiSmallText" ng-model="product_unit_price" type="text" maxlength="5" size="5" />
-          <span class="uiSmallText uiMandatoryText">{{ _product_unit_price_ErrorMessage }}</span>
-        </td>
-      </tr>
-      <tr>
-        <td><b>active</b></td>
-        <td><input id="is_active" type="checkbox"></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
-          <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
-        </td>
-      </tr>
       </table>
 
     </div>	

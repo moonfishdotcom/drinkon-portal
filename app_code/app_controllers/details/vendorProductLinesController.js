@@ -112,6 +112,12 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
+    dbRepository.getVendorProductLinePrices(_item_id, function(_error, _data)
+    {
+      $scope.line_prices = _data.Data;
+      console.log($scope.line_prices);
+    });
+
     dbRepository.getVendorProductLineDetails(_item_id, function(_error, _data)
     {
       var itemData = _data.Data;
@@ -198,10 +204,6 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       if (__product_id == value.product_id && __product_measure_id == value.product_measure_id && __id != value.id)
       {
         _itemCount = _itemCount + 1;
-      console.log("In field:",__product_id);
-      console.log("In array:",value.product_id);
-      console.log("In field:",__product_measure_id);
-      console.log("In array:",value.product_measure_id);
       }
     })
 
@@ -243,5 +245,76 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     }
     
   };
+
+
+  $scope.cancelPriceLine = function()
+  {
+    $scope.new_price_start = "";
+    $scope.new_price_end = "";
+    $scope.new_price = "";
+    $scope.new_price_desc = "";
+  }
+
+
+  $scope.savePriceLine = function()
+  {
+    var __id = $('#__id').val();
+    var __pt = "sys_product_line_prices";
+
+    var __product_price_start = $scope.new_price_start;
+    var __product_price_end = $scope.new_price_end;
+    var __product_unit_price = $scope.new_price;
+    var __product_price_desc = $scope.new_price_desc;
+
+    //Check if we have any mandatory fields missing
+    
+    var __canSaveData = 0;
+
+    //Save the data if we have no validation issues
+    if (__canSaveData == 0)
+    {
+      //Build the json
+      var form_json = '';
+      form_json += '{"data": [{';
+      form_json += '"id": "0",';
+      form_json += '"pt": "' + __pt + '",';
+      form_json += '"product_line_id": "' + __id + '",';
+      form_json += '"product_price_start": "' + __product_price_start + '",';
+      form_json += '"product_price_end": "' + __product_price_end + '",';
+      form_json += '"product_unit_price": "' + __product_unit_price + '",';
+      form_json += '"product_price_desc": "' + __product_price_desc + '" ';
+      form_json += '}]}';
+
+      var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=SET&t=".concat(form_json);
+
+      $.ajax({
+        type: "POST", url: url,
+        success: function (data, text) {
+
+          dbRepository.getVendorProductLinePrices(__id, function(_error, _data)
+          {
+            $scope.line_prices = _data.Data;
+          });
+
+          $scope.new_price_start = "";
+          $scope.new_price_end = "";
+          $scope.new_price = "";
+          $scope.new_price_desc = "";
+
+          //window.location.href="#details/vendor-product-lines";
+
+        },
+        error: function (request, status, error) {
+          console.log(error);
+          window.location.href="#error";
+        }
+      });
+
+    }
+
+
+
+  }
+
 
 });	

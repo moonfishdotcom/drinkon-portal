@@ -219,6 +219,12 @@
   border-radius:5px;
 }
 
+.uiButtonSmall
+{
+  height:50px;
+  width:100px;
+}
+
 .uiButtonMedium
 {
   height:50px;

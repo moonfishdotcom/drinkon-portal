@@ -113,6 +113,15 @@ drinkon.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
+    getVendorProductLinePrices: function(_product_line_id, cb)
+    {
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_product_line_prices&s1=product_line_id&s2=" + _product_line_id + ""
+
+      $http.get(url)
+        .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})
+        .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
+    },
+
     getVendorProductMeasuresList: function(_vendor_id, cb)
     {
 	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_product_measures_with_types&s1=vendor_id&s2=" + _vendor_id + ""

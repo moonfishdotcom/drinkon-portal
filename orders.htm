@@ -79,9 +79,11 @@
 
 
 
-  <script src="angularjs/angular.min.js"></script>
-  <script src="angularjs/angular-route.min.js"></script>
-  <script src="angularjs/angular-animate.min.js"></script>
+  <script src="external/angularjs/angular.min.js"></script>
+  <script src="external/angularjs/angular-route.min.js"></script>
+  <script src="external/angularjs/angular-animate.min.js"></script>
+
+  <script src="external/momentjs/moment.js"></script>
 
   <script src="app_code/app_main.js"></script>
   <script src="app_code/app_controllers/homeController.js"></script>
@@ -120,6 +122,26 @@
   <script src="app_code/app_routing/app_routes.js"></script>
 
   <script src="app_code/app_dbfactory/app_dbfactory.js"></script>
+
+
+  <script>
+  //This is dummy code and must be removed
+  var __cookie_vendor_id = "";
+  
+  var _cookie = document.cookie.split("=");
+  
+  if (_cookie.length == 1)
+  {
+    console.log("No Cookie data");
+  }
+  else
+  {
+    var _cookie_data = _cookie[1].split(";");
+
+    __cookie_vendor_id = _cookie_data[0];
+    console.log("Vendor = ", __cookie_vendor_id);
+  }
+  </script>
 
   </body>
 </html>
