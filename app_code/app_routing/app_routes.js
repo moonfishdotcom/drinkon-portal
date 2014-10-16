@@ -131,6 +131,11 @@ $routeProvider
 	controller: 'vendorSocialController'
   })
 
+  .when('/details/vendor-system-settings', {
+	templateUrl: 'app_pages/details/vendor-system-settings.htm',
+	controller: 'vendorSystemSettingsController'
+  })
+
   .when('/details/vendor-users', {
 	templateUrl: 'app_pages/details/vendor-users.htm',
 	controller: 'vendorUsersController'

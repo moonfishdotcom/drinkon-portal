@@ -9,6 +9,12 @@ drinkon.controller('ordersController', function($scope, dbRepository)
     console.log($scope.items);
   });
 
+//  dbRepository.getVendorUsers(_vendor_id, function(_error, _data)
+//  {
+//    $scope.users = _data.Data;
+//    console.log($scope.users);
+//  });
+
 
   $scope.moveAcceptOrder = function(_order_id)
   {

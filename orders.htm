@@ -29,6 +29,7 @@
       </div>
       <div style="float:right; padding-top:15px; padding-right:15px;">
 
+<!--
         <div style="float:left; padding-right:10px;">
 	      <div id="_user_name" class="uiBigText" style="color:#000000;">TEMP-Tim Harris</div>
 	    </div>
@@ -40,7 +41,7 @@
           </div>
 
         </div>
-
+-->
       </div>
     </div>
 
@@ -55,6 +56,10 @@
     <div class="" style="">
 
       <div style="width:98%; margin-left:auto; margin-right:auto;">
+
+        <div ng-repeat="user in users">
+          <button class="uiButtonBase uiDetailsButton uiBannerText_BLACK">Ben Lacey</button>
+        </div>
 
         <div>
           <button class="uiButtonBase uiDetailsButton uiBannerText_BLACK">Ben Lacey</button>
@@ -94,27 +99,6 @@
   <script src="app_code/app_controllers/orders/orderAcceptController.js"></script>
   <script src="app_code/app_controllers/orders/orderCompleteController.js"></script>
 
-  <script src="app_code/app_controllers/stock/stockController.js"></script>
-
-  <script src="app_code/app_controllers/socialController.js"></script>
-  <script src="app_code/app_controllers/social/socialNotificationsController.js"></script>
-  <script src="app_code/app_controllers/social/socialReviewsController.js"></script>
-  
-  <script src="app_code/app_controllers/detailsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorAccountsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorDescriptionController.js"></script>
-  <script src="app_code/app_controllers/details/vendorDetailsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorLocationController.js"></script>
-  <script src="app_code/app_controllers/details/vendorPatternsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorProductsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorProductLinesController.js"></script>
-  <script src="app_code/app_controllers/details/vendorProductMeasuresController.js"></script>
-  <script src="app_code/app_controllers/details/vendorProductSpecialsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorProductTypesController.js"></script>
-  <script src="app_code/app_controllers/details/vendorReportsController.js"></script>
-  <script src="app_code/app_controllers/details/vendorRolesController.js"></script>
-  <script src="app_code/app_controllers/details/vendorSocialController.js"></script>
-  <script src="app_code/app_controllers/details/vendorUsersController.js"></script>
 
   <script src="app_code/app_controllers/logonController.js"></script>
   <script src="app_code/app_controllers/logoutController.js"></script>
