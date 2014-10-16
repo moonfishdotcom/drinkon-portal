@@ -312,7 +312,39 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     }
 
+  }
 
+
+  $scope.deletePriceLine = function(_item_id)
+  {
+    console.log("Will delete id : ", _item_id);
+
+    var __id = _item_id;
+    var __pt = "sys_product_line_prices";
+
+    var form_json = '';
+    form_json += '{"data": [{';
+    form_json += '"id": "' + __id + '",';
+    form_json += '"pt": "' + __pt + '" ';
+    form_json += '}]}';
+
+    var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=DEL&t=".concat(form_json);
+
+    $.ajax({
+      type: "POST", url: url,
+      success: function (data, text) {
+
+        dbRepository.getVendorProductLinePrices(__id, function(_error, _data)
+        {
+          $scope.line_prices = _data.Data;
+        });
+
+      },
+      error: function (request, status, error) {
+        console.log(error);
+        window.location.href="#error";
+      }
+    });
 
   }
 

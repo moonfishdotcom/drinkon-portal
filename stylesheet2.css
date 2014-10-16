@@ -219,6 +219,16 @@
   border-radius:5px;
 }
 
+.uiButtonVerySmall
+{
+  padding:2px 2px 2px 2px;
+  margin-right:5px;
+  cursor:pointer;
+  border-radius:5px;
+  height:40px;
+  width:50px;
+}
+
 .uiButtonSmall
 {
   height:50px;
