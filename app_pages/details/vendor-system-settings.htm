@@ -5,10 +5,136 @@
   <div style="float:left; width:100%;">
 	<div id="pagePanel">
 
-      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <table width="100%" cellspacing="5" cellpadding="5" class="uiLargerText">
       <tr>
         <td colspan="1"><span class="uiBannerText_BLACK">system settings</span></td>
       </tr>
+
+      <tr>
+        <td width="33%" valign="top">
+        <!-- col 1 row 1 -->
+        <table cellspacing="2" cellpadding="2">
+        <tr>
+          <td><span class="uiLargerText">ordering</span></td>
+        </tr>
+        <tr>
+          <td><span class="uiNormalText">time slot</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="timeslot_length">
+              <option value="0">Any</option>
+              <option value="5">5 mins</option>
+              <option value="10">10 mins</option>
+              <option value="15">15 mins</option>
+              <option value="20">20 mins</option>
+              <option value="25">25 mins</option>
+              <option value="30">30 mins</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="uiNormalText">max orders in time slot</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="timeslot_maxorders">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="uiNormalText">unaccepted order alert</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="ordertogo_period">
+              <option value="5">5 mins</option>
+              <option value="10">10 mins</option>
+              <option value="15">15 mins</option>
+            </select>
+            before
+          </td>
+        </tr>
+        
+        </table>
+        </td>
+
+        <td width="33%" valign="top">
+        <!-- col 2 row 1 -->
+        <table cellspacing="2" cellpadding="2">
+        <tr>
+          <td><span class="uiLargerText">social</span></td>
+        </tr>
+        <tr>
+          <td><span class="uiNormalText">max review score</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="review_maxscore">
+              <option value="5">5</option>
+              <option value="7">7</option>
+              <option value="9">9</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="uiNormalText">show the last</span></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="review_showcount">
+              <option value="0">all</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+            reviews
+          </td>
+        </tr>
+        </table>
+        </td>
+
+        <td width="33%" valign="top">
+        <!-- col 3 row 1 -->
+        <table cellspacing="2" cellpadding="2">
+        <tr>
+          <td><span class="uiLargerText">home</span></td>
+        </tr>
+        <tr><td><input type="checkbox">show todays order totals</td></tr>
+        <tr><td><input type="checkbox">show current staff order totals</td></tr>
+
+        </table>
+        </td>
+
+      </tr>
+
+      <tr><td colspan="3" style="height:10px;">&nbsp;</td></tr>
+
+      <tr>
+        <td width="33%" valign="top">
+        <!-- col 1 row 2 -->
+        <table cellspacing="2" cellpadding="2">
+        <tr>
+          <td><span class="uiLargerText">column 1</span></td>
+        </tr>
+        
+        </table>
+        </td>
+
+        <td width="33%" valign="top">
+        <!-- col 2 row 2 -->
+        <table cellspacing="2" cellpadding="2">
+        <tr>
+          <td><span class="uiLargerText">column 2</span></td>
+        </tr>
+        </table>
+        </td>
+
+        <td width="33%" valign="top">
+        <!-- col 3 row 2 -->
+        <table cellspacing="2" cellpadding="2">
+        <tr>
+          <td><span class="uiLargerText">column 3</span></td>
+        </tr>
+        </table>
+        </td>
+
+      </tr>
+      
       </table>
 
 	</div>

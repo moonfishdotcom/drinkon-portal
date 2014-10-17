@@ -56,7 +56,7 @@
       $sql1 .= "DATE_FORMAT(order_reqd_for,'%W %d %M at %h:%i %p') AS order_reqd_for, ";
       $sql1 .= "order_status_id, order_status_name, order_owner_id, user_known_as, order_total ";
       $sql1 .= "FROM vw_order_header_with_totals ";
-      $sql1 .= "WHERE 1=1 ";
+      $sql1 .= "WHERE 1=1 AND order_status_id IN (1, 2) ";
 
 
       if ($this->s == "ALL")

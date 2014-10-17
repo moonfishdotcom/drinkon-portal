@@ -56,6 +56,10 @@
 		<td>{{ item.location_name }}</td>
       </tr>
       <tr>
+		<td><b>opening hrs</b></td>
+		<td>7:00pm to 01:00am</td>
+      </tr>
+      <tr>
         <td><b>actions</b></td>
         <td>
         
@@ -128,6 +132,24 @@
             <option value="">Please choose a location...</option>
           </select>
           <span class="uiSmallText uiMandatoryText">{{ _location_id_ErrorMessage }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td><b>opening hrs</b></td>
+        <td>
+          from
+          <select class="uiSmallText uiDdlCore" ng-model="opentime_start">
+            <option value="0">All day</option>
+            <option value="1100">11:00</option>
+            <option value="1130">11:30</option>
+          </select>          
+          to
+          <select class="uiSmallText uiDdlCore" ng-model="opentime_end">
+            <option value="0">All day</option>
+            <option value="2300">23:00</option>
+            <option value="2330">23:30</option>
+          </select>          
+        
         </td>
       </tr>
 
