@@ -86,6 +86,11 @@ $routeProvider
 	controller: 'vendorLocationController'
   })
 
+  .when('/details/vendor-opening-hours', {
+	templateUrl: 'app_pages/details/vendor-opening-hours.htm',
+	controller: 'vendorOpeningHoursController'
+  })
+
   .when('/details/vendor-patterns', {
 	templateUrl: 'app_pages/details/vendor-patterns.htm',
 	controller: 'vendorPatternsController'
