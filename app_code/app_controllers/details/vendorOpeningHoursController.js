@@ -1,8 +1,7 @@
 drinkon.controller('vendorOpeningHoursController', function($scope, dbRepository)
 {
 
-
-
+  //Get the data from the database
 
 
   $scope.editItem = function()
@@ -13,6 +12,19 @@ drinkon.controller('vendorOpeningHoursController', function($scope, dbRepository
 
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
+  }
+
+
+  $scope.cancelItem = function()
+  {
+    document.getElementById("pagePanel").style = "display:block;";
+    document.getElementById("pageEditPanel").style = "display:none;";
+  }
+
+
+  $scope.saveItem = function()
+  {
+
   }
 
 });
