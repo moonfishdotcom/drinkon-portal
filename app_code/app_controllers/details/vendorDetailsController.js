@@ -39,6 +39,9 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
       $scope.vendor_phone = itemData[0].vendor_phone;
       $scope.vendor_fax = itemData[0].vendor_fax;
       $scope.vendor_email = itemData[0].vendor_email;
+      $scope.vendor_web = itemData[0].vendor_web;
+      $scope.vendor_twitter = itemData[0].vendor_twitter;
+      $scope.vendor_facebook = itemData[0].vendor_facebook;
 
       $scope.location_id = $scope.locations.filter(function (item)
       {
@@ -72,6 +75,9 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
     var __vendor_phone = $scope.vendor_phone;
     var __vendor_fax = $scope.vendor_fax;
     var __vendor_email = $scope.vendor_email;
+    var __vendor_web = $scope.vendor_web;
+    var __vendor_twitter = $scope.vendor_twitter;
+    var __vendor_facebook = $scope.vendor_facebook;
 
     var __location_id = "0";
     if ($scope.location_id != null)
@@ -116,6 +122,9 @@ drinkon.controller('vendorDetailsController', function($scope, dbRepository)
       form_json += '"vendor_phone": "' + __vendor_phone + '",';
       form_json += '"vendor_fax": "' + __vendor_fax + '",';
       form_json += '"vendor_email": "' + __vendor_email + '",';
+      form_json += '"vendor_web": "' + __vendor_web + '",';
+      form_json += '"vendor_twitter": "' + __vendor_twitter + '",';
+      form_json += '"vendor_facebook": "' + __vendor_facebook + '",';
       form_json += '"location_id": "' + __location_id + '"';
       form_json += '}]}';
 
