@@ -30,6 +30,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     $scope.user_name = "";
     $scope.user_known_as = "";
     $scope.user_pattern = null;
+    $scope.user_role = null;
 
     $scope._vendor_user_id_ErrorMessage = "";
     $scope._user_name_ErrorMessage = "";
