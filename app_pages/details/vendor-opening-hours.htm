@@ -83,66 +83,13 @@
       <tr>
         <td><b>monday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="mon_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="mon_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
-            <option value="1215">12:15</option>
-            <option value="1230">12:30</option>
-            <option value="1245">12:45</option>
-            <option value="1300">13:00</option>
-            <option value="1315">13:15</option>
-            <option value="1330">13:30</option>
-            <option value="1345">13:45</option>
-            <option value="1400">14:00</option>
-            <option value="1415">14:15</option>
-            <option value="1430">14:30</option>
-            <option value="1445">14:45</option>
-            <option value="1500">15:00</option>
-            <option value="1515">15:15</option>
-            <option value="1530">15:30</option>
-            <option value="1545">15:45</option>
-            <option value="1600">16:00</option>
-            <option value="1615">16:15</option>
-            <option value="1630">16:30</option>
-            <option value="1645">16:45</option>
-            <option value="1700">17:00</option>
-            <option value="1715">17:15</option>
-            <option value="1730">17:30</option>
-            <option value="1745">17:45</option>
-            <option value="1800">18:00</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="mon_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="mon_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="1800">18:00</option>
-            <option value="1815">18:15</option>
-            <option value="1830">18:30</option>
-            <option value="1845">18:45</option>
-            <option value="1900">19:00</option>
-            <option value="1915">19:15</option>
-            <option value="1930">19:30</option>
-            <option value="1945">19:45</option>
-            <option value="2000">20:00</option>
-            <option value="2015">20:15</option>
-            <option value="2030">20:30</option>
-            <option value="2045">20:45</option>
-            <option value="2100">21:00</option>
-            <option value="2115">21:15</option>
-            <option value="2130">21:30</option>
-            <option value="2145">21:45</option>
-            <option value="2200">22:00</option>
-            <option value="2215">22:15</option>
-            <option value="2230">22:30</option>
-            <option value="2245">22:45</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>
@@ -150,22 +97,13 @@
       <tr>
         <td><b>tuesday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="tues_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="tues_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="tues_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="tues_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>
@@ -173,22 +111,13 @@
       <tr>
         <td><b>wednesday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="wed_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="wed_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="wed_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="wed_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>
@@ -196,22 +125,13 @@
       <tr>
         <td><b>thursday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="thur_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="thur_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="thur_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="thur_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>
@@ -219,22 +139,13 @@
       <tr>
         <td><b>friday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="fri_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="fri_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="fri_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="fri_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>
@@ -242,22 +153,13 @@
       <tr>
         <td><b>saturday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sat_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="sat_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sat_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="sat_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>
@@ -265,22 +167,14 @@
       <tr>
         <td><b>sunday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sun_open" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="sun_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">open...</option>
-            <option value="1100">11:00</option>
-            <option value="1115">11:15</option>
-            <option value="1130">11:30</option>
-            <option value="1145">11:45</option>
-            <option value="1200">12:00</option>
           </select>
+
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sun_close" ng-options="">
+          <select class="uiSmallText uiDdlCore" ng-model="sun_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
             <option value="">close...</option>
-            <option value="2300">23:00</option>
-            <option value="2315">23:15</option>
-            <option value="2330">23:30</option>
-            <option value="2345">23:45</option>
           </select>
         </td>
       </tr>

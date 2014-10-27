@@ -1,7 +1,13 @@
 drinkon.controller('vendorOpeningHoursController', function($scope, dbRepository)
 {
+//  var _vendor_id = "1";
+  var _vendor_id = __cookie_vendor_id;
 
-  //Get the data from the database
+  dbRepository.getOpeningHours(function(_error, _data)
+  {
+    $scope.openinghours = _data.Data;
+    console.log($scope.openinghours);
+  });
 
 
   $scope.editItem = function()
