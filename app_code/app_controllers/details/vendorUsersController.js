@@ -15,6 +15,12 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     console.log($scope.patterns);
   });
 
+  dbRepository.getVendorRolesList(_vendor_id, function(_error, _data)
+  {
+    $scope.roles = _data.Data;
+    console.log($scope.roles);
+  });
+
 
   $scope.newItem = function()
   {
@@ -58,6 +64,11 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
         return item.id == itemData[0].user_pattern_id;
       })[0];
 
+      $scope.user_role = $scope.roles.filter(function (role)
+      {
+        return role.id == itemData[0].user_role_id;
+      })[0];
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -84,6 +95,12 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     {
       __user_pattern_id = $scope.user_pattern.id;
     }
+
+    var __user_role_id = "0";
+    if ($scope.user_role != null)
+    {
+      __user_role_id = $scope.user_role.id;
+    }
 	
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
@@ -92,6 +109,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
     $scope._vendor_user_id_ErrorMessage = "";
     $scope._user_name_ErrorMessage = "";
     $scope._user_pattern_ErrorMessage = "";
+    $scope._user_role_ErrorMessage = "";
     
     var __canSaveData = 0;
     
@@ -134,6 +152,12 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
       __canSaveData = __canSaveData + 1;
       $scope._user_pattern_ErrorMessage = "you must choose a pattern";
     }
+
+    if (__user_role_id == "0")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._user_role_ErrorMessage = "you must choose a role";
+    }
     
     
     //Save the data if we have no validation issues
@@ -149,6 +173,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
       form_json += '"user_name": "' + __user_name + '",';
       form_json += '"user_known_as": "' + __user_known_as + '",';
       form_json += '"user_pattern_id": "' + __user_pattern_id + '",';
+      form_json += '"user_role_id": "' + __user_role_id + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
 

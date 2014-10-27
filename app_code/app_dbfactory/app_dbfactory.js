@@ -203,7 +203,7 @@ drinkon.factory('dbRepository', function($http)
         .error(function(data,status,headers){cb({Error:data, Status:status, Headers:headers},null);})
     },
 
-    getVendorRolesDetails: function(_id, cb)
+    getVendorRoleDetails: function(_id, cb)
     {
 	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=dv_sys_user_roles&s1=id&s2=" + _id + ""
 
@@ -214,7 +214,7 @@ drinkon.factory('dbRepository', function($http)
 
     getVendorUsers: function(_vendor_id, cb)
     {
-	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_users_with_patterns&s1=vendor_id&s2=" + _vendor_id + ""
+	  var url = "" + sysconfig["web_protocol"] + "://" + sysconfig["svc_url_base"] + "/svc_data.php?v=GET&q=vw_users_with_patterns_and_roles&s1=vendor_id&s2=" + _vendor_id + ""
 
       $http.get(url)
         .success(function(data,status,headers){cb(null,{Data:data, Status:status, Headers:headers});})

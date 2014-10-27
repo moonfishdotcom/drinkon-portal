@@ -15,6 +15,15 @@ drinkon.controller('vendorRolesController', function($scope, dbRepository)
 
     $scope.role_name = "";
 
+    $('#is_can_see_orders').prop('checked', false);      
+    $('#is_can_accept_orders').prop('checked', false);      
+    $('#is_can_complete_orders').prop('checked', false);      
+
+    $('#is_can_handle_stock').prop('checked', false);      
+
+    $('#is_administrator').prop('checked', false);      
+
+
     $scope._role_name_ErrorMessage = "";
 
     document.getElementById("pagePanel").style = "display:none;";
@@ -29,7 +38,7 @@ drinkon.controller('vendorRolesController', function($scope, dbRepository)
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
 
-    dbRepository.getVendorRolesDetails(_item_id, function(_error, _data)
+    dbRepository.getVendorRoleDetails(_item_id, function(_error, _data)
     {
       var itemData = _data.Data;
 
@@ -83,6 +92,22 @@ drinkon.controller('vendorRolesController', function($scope, dbRepository)
       __canSaveData = __canSaveData + 1;
       $scope._role_name_ErrorMessage = "this field is mandatory";
     }
+
+    //Check if the key value has already been used
+    var _itemCount = 0;
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__role_name == value.role_name && __id != value.id)
+      {
+        _itemCount = _itemCount + 1;
+      }
+    })
+
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._role_name_ErrorMessage = "this role name has already been used";
+	}
 
 
     //Save the data if we have no validation issues
