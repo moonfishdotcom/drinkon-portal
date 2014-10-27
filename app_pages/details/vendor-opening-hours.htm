@@ -5,6 +5,7 @@
   <div style="float:left; width:100%;">
     <div id="pagePanel">
 
+      <div ng-repeat="item in items">
       <table cellspacing="5" cellpadding="5" class="uiLargerText">
       <tr>
         <td colspan="3"><span class="uiBannerText_BLACK">opening hours</span></td>
@@ -18,48 +19,49 @@
 
       <tr>
         <td><b>monday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.monday_open.substring(0,2) + ':' + item.monday_open.substring(2) }}</td>
+        <td>{{ item.monday_close.substring(0,2) + ':' + item.monday_close.substring(2) }}</td>
       </tr>
       <tr>
         <td><b>tuesday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.tuesday_open.substring(0,2) + ':' + item.tuesday_open.substring(2) }}</td>
+        <td>{{ item.tuesday_close.substring(0,2) + ':' + item.tuesday_close.substring(2) }}</td>
       </tr>
       <tr>
         <td><b>wednesday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.wednesday_open.substring(0,2) + ':' + item.wednesday_open.substring(2) }}</td>
+        <td>{{ item.wednesday_close.substring(0,2) + ':' + item.wednesday_close.substring(2) }}</td>
       </tr>
       <tr>
         <td><b>thursday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.thursday_open.substring(0,2) + ':' + item.thursday_open.substring(2) }}</td>
+        <td>{{ item.thursday_close.substring(0,2) + ':' + item.thursday_close.substring(2) }}</td>
       </tr>
       <tr>
         <td><b>friday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.friday_open.substring(0,2) + ':' + item.friday_open.substring(2) }}</td>
+        <td>{{ item.friday_close.substring(0,2) + ':' + item.friday_close.substring(2) }}</td>
       </tr>
       <tr>
         <td><b>saturday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.saturday_open.substring(0,2) + ':' + item.saturday_open.substring(2) }}</td>
+        <td>{{ item.saturday_close.substring(0,2) + ':' + item.saturday_close.substring(2) }}</td>
       </tr>
       <tr>
         <td><b>sunday</b></td>
-        <td>11:00</td>
-        <td>23:00</td>
+        <td>{{ item.sunday_open.substring(0,2) + ':' + item.sunday_open.substring(2) }}</td>
+        <td>{{ item.sunday_close.substring(0,2) + ':' + item.sunday_close.substring(2) }}</td>
       </tr>
 
       <tr>
         <td colspan="3">
-          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="editItem();">edit</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.vendor_id);">edit</button>
         </td>
       </tr>
 
       </table>
-      
+      </div>
+            
     </div>
     
     
@@ -83,12 +85,12 @@
       <tr>
         <td><b>monday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="mon_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="mon_open" ng-options="openinghour.hours_title for openinghour in mon_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="mon_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="mon_close" ng-options="openinghour.hours_title for openinghour in mon_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
@@ -97,12 +99,12 @@
       <tr>
         <td><b>tuesday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="tues_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="tues_open" ng-options="openinghour.hours_title for openinghour in tues_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="tues_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="tues_close" ng-options="openinghour.hours_title for openinghour in tues_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
@@ -111,12 +113,12 @@
       <tr>
         <td><b>wednesday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="wed_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="wed_open" ng-options="openinghour.hours_title for openinghour in wed_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="wed_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="wed_close" ng-options="openinghour.hours_title for openinghour in wed_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
@@ -125,12 +127,12 @@
       <tr>
         <td><b>thursday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="thur_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="thurs_open" ng-options="openinghour.hours_title for openinghour in thurs_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="thur_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="thurs_close" ng-options="openinghour.hours_title for openinghour in thurs_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
@@ -139,12 +141,12 @@
       <tr>
         <td><b>friday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="fri_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="fri_open" ng-options="openinghour.hours_title for openinghour in fri_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="fri_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="fri_close" ng-options="openinghour.hours_title for openinghour in fri_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
@@ -153,12 +155,12 @@
       <tr>
         <td><b>saturday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sat_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="sat_open" ng-options="openinghour.hours_title for openinghour in sat_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sat_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="sat_close" ng-options="openinghour.hours_title for openinghour in sat_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
@@ -167,22 +169,28 @@
       <tr>
         <td><b>sunday</b></td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sun_open" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="sun_open" ng-options="openinghour.hours_title for openinghour in sun_open_hrs|orderBy:'hour_value'">
             <option value="">open...</option>
           </select>
 
         </td>
         <td>
-          <select class="uiSmallText uiDdlCore" ng-model="sun_close" ng-options="openinghour.hours_title for openinghour in openinghours|orderBy:'hour_value'">
+          <select class="uiSmallText uiDdlCore" ng-model="sun_close" ng-options="openinghour.hours_title for openinghour in sun_close_hrs|orderBy:'hour_value'">
             <option value="">close...</option>
           </select>
         </td>
       </tr>
 
       <tr>
-        <td colspan="14">
+        <td colspan="3">
           <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
           <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <span class="uiSmallText uiMandatoryText">{{ _opening_hours_ErrorMessage }}</span>
         </td>
       </tr>
 
