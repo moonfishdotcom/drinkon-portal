@@ -24,6 +24,8 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     $scope.product_name = "";
     $scope.product_desc = "";
     $scope.product_type_id = null;
+    $scope.image_name = "";
+    $scope.product_abv = "";
 
     $scope._vendor_product_id_ErrorMessage = "";
     $scope._product_name_ErrorMessage = "";
@@ -58,6 +60,9 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
         return item.id == itemData[0].product_type_id;
       })[0];
 
+      $scope.image_name = itemData[0].image_name;
+      $scope.product_abv = itemData[0].product_abv;
+
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
   }
@@ -84,6 +89,9 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     {
       __product_type_id = $scope.product_type_id.id;
     }
+
+    var __image_name = $scope.image_name;
+    var __product_abv = $scope.product_abv;
     
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
     var __is_fixed = "0";
@@ -162,7 +170,8 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
       form_json += '"product_name": "' + __product_name + '",';
       form_json += '"product_desc": "' + __product_desc + '",';
       form_json += '"product_type_id": "' + __product_type_id + '",';
-//    form_json += '"product_status_id": "1",';
+      form_json += '"image_name": "' + __image_name + '",';
+      form_json += '"product_abv": "' + __product_abv + '",';
       form_json += '"is_active": "' + __is_active + '", ';
       form_json += '"is_fixed": "' + __is_fixed + '" ';
       form_json += '}]}';
