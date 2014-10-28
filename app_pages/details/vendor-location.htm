@@ -5,9 +5,73 @@
   <div style="float:left; width:100%;">
 	<div id="pagePanel">
 
-      <span>The vendor location page will go here</span>
+      <div ng-repeat="item in items">
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">location</span></td>
+      </tr>
+      <tr>
+		<td><b>longitude</b></td>
+		<td>{{ item.location_long }}</td>
+      </tr>
+      <tr>
+		<td><b>latitude</b></td>
+		<td>{{ item.location_lat }}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+        
+          <div>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="editItem(item.vendor_id);">edit</button>
+          </div>
+        
+        </td>
+      </tr>
+      </table>
+      </div>
 
 	</div>
+
+
+	<div id="pageEditPanel" class="uiElementDisplayNone">
+
+      <form name="pageForm">
+      <input type="hidden" id="__id" value="0">
+      </form>
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">location</span></td>
+      </tr>
+      <tr>
+        <td><b>longitude</b><span class="uiMandatoryText">*</span></td>
+        <td>
+          <input ng-model="location_long" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" />
+          <span class="uiSmallText uiMandatoryText">{{ _location_long_ErrorMessage }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td><b>latitude</b><span class="uiMandatoryText">*</span></td>
+        <td>
+          <input ng-model="location_lat" class="uiFieldCore uiSmallText" type="text" maxlength="100" size="50" />
+          <span class="uiSmallText uiMandatoryText">{{ _location_lat_ErrorMessage }}</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem();">save</button>
+          <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="cancelItem();">cancel</button>
+        </td>
+      </tr>
+
+      </table>
+      
+    </div>
+
+
   </div>
 
 </div>
