@@ -23,11 +23,10 @@ drinkon.controller('vendorLocationController', function($scope, dbRepository)
       var itemData = _data.Data;
 
       $('#__id').val(itemData[0].vendor_id);
-      
+    
       $scope.location_long = itemData[0].location_long;
       $scope.location_lat = itemData[0].location_lat;
     });
-
   }
 
 

@@ -64,6 +64,8 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     $scope.product_unit_price = itemData[0].product_unit_price;
 
+    $scope.product_stock_id = itemData[0].product_stock_id;
+
     $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
   }
 
@@ -72,6 +74,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
   {
     $("#product_measure_id").prop('disabled', false);
     $("#product_unit_price").prop('disabled', false);
+    $("#product_stock_id").prop('disabled', false);
 
     var _product_id = "0";
     if ($scope.product != null)
@@ -90,13 +93,16 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     $scope.product = null;
     $scope.product_measure = null;
     $scope.product_unit_price = "";
+    $scope.product_stock_id = "";
 
     $("#product_measure_id").prop('disabled', true);
     $("#product_unit_price").prop('disabled', true);
+    $("#product_stock_id").prop('disabled', true);
 
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
     $scope._product_unit_price_ErrorMessage = "";
+    $scope._product_stock_id_ErrorMessage = "";
     
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
@@ -108,6 +114,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
     $scope._product_unit_price_ErrorMessage = "";
+    $scope._product_stock_id_ErrorMessage = "";
 
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
@@ -158,12 +165,15 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     var __product_unit_price = $scope.product_unit_price;
 
+    var __product_stock_id = $scope.product_stock_id;
+
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
     //Check if we have any mandatory fields missing
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
     $scope._product_unit_price_ErrorMessage = "";
+    $scope._product_stock_id_ErrorMessage = "";
     
     var __canSaveData = 0;
     
@@ -197,6 +207,13 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       $scope._product_unit_price_ErrorMessage = "this field must be greater than zero";
     }
 
+    if (__product_stock_id == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_stock_id_ErrorMessage = "this field is mandatory";
+    }
+
+
     //Check if the key value has already been used
     var _itemCount = 0;
     angular.forEach($scope.items,function(value,index)
@@ -226,6 +243,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       form_json += '"product_id": "' + __product_id + '",';
       form_json += '"product_measure_id": "' + __product_measure_id + '",';
       form_json += '"product_unit_price": "' + __product_unit_price + '",';
+      form_json += '"product_stock_id": "' + __product_stock_id + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
 

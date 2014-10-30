@@ -213,7 +213,7 @@
 /* Button styles */
 .uiButtonBase
 {
-  padding:5px 10px 10px 10px;
+  padding:0px 10px 10px 5px;
   margin-right:5px;
   cursor:pointer;
   border-radius:5px;
