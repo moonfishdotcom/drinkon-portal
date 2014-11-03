@@ -15,6 +15,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
     $('#__id').val("0");
 
     $scope.product_type_name = "";
+    $scope.image_name = "";
 
     $scope._product_type_name_ErrorMessage = "";
 
@@ -37,6 +38,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
       $('#__id').val(itemData[0].id);
 
       $scope.product_type_name = itemData[0].product_type_name;
+      $scope.image_name = itemData[0].image_name;
 
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
     });
@@ -56,6 +58,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
     var __pt = "sys_product_types";
 
     var __product_type_name = $scope.product_type_name;
+    var __image_name = $scope.image_name;
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
     var __is_fixed = "0";
 
@@ -97,6 +100,7 @@ drinkon.controller('vendorProductTypesController', function($scope, dbRepository
       form_json += '"pt": "' + __pt + '",';
       form_json += '"vendor_id": "' + _vendor_id + '",';
       form_json += '"product_type_name": "' + __product_type_name + '",';
+      form_json += '"image_name": "' + __image_name + '",';
       form_json += '"is_active": "' + __is_active + '", ';
       form_json += '"is_fixed": "' + __is_fixed + '" ';
       form_json += '}]}';
