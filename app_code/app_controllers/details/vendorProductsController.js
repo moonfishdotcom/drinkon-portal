@@ -80,7 +80,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_products";
 
-    var __vendor_product_id = $scope.vendor_product_id;
+    var __vendor_product_id = "'" + $scope.vendor_product_id + "'";
     var __product_name = $scope.product_name;
     var __product_desc = $scope.product_desc;
 
@@ -104,11 +104,11 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     
     var __canSaveData = 0;
     
-    if (__vendor_product_id == "")
-    {
-      __canSaveData = __canSaveData + 1;
-      $scope._vendor_product_id_ErrorMessage = "this field is mandatory";
-    }
+//    if (__vendor_product_id == "")
+//    {
+//      __canSaveData = __canSaveData + 1;
+//      $scope._vendor_product_id_ErrorMessage = "this field is mandatory";
+//    }
 
     //Check if the key value has already been used
     var _itemCount = 0;
