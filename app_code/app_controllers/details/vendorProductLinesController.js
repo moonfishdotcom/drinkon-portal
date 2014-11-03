@@ -165,7 +165,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     var __product_unit_price = $scope.product_unit_price;
 
-    var __product_stock_id = $scope.product_stock_id;
+    var __product_stock_id = "'" + $scope.product_stock_id + "'";
 
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
