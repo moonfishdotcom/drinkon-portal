@@ -3,11 +3,142 @@
 <div class="uiPageInnerContainer">
 
   <div style="float:left; width:100%;">
-	<div id="pagePanel">
 
-      <span>The vendor products specials page will go here</span>
+	<div id="pagePanel" class="uiElementDisplayNone">
 
 	</div>
+
+
+	<div id="pageEditPanel">
+
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="2"><span class="uiBannerText_BLACK">product specials</span></td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+
+        <!-- filter bar -->
+        <table cellspacing="3" cellpadding="3">
+        <tr>
+          <td><b>filter by :</b></td>
+          <td><b>type</b></td>
+          <td><b>measure</b></td>
+          <td><b>name</b></td>
+          <td><!-- search button --></td>
+        </tr>
+
+        <tr>
+          <td><!-- filter by comment --></td>
+          <td>
+            <select class="uiSmallText uiDdlCore" ng-model="product_type_id" ng-options="product_type.product_type_name for product_type in product_types|orderBy:'product_type_name'">
+              <option value="">product type...</option>
+            </select>
+          </td>
+          <td>
+            <select id="price_measure" class="uiSmallText uiDdlCore" ng-model="price_measure" ng-change="">
+              <option value="">product measure...</option>
+              <option value="1">Pint</option>
+              <option value="2">Half-Pint</option>
+              <option value="3">330ml Bottle</option>
+            </select>
+          </td>
+          <td><input ng-model="product_name" class="uiFieldCore uiSmallText" type="text" maxlength="50" size="10" /></td>
+          <td>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="">search</button>
+          </td>
+        </tr>
+
+        </table>
+        
+        </td>
+      </tr>
+
+      <tr><td colspan="2"><hr width="100%"></td></tr>
+
+      <tr>
+      
+        <td width="50%" valign="top">
+        
+        <!-- product list -->
+        <table cellspacing="3" cellpadding="3">
+        <tr>
+          <td><input type="checkbox"></td>
+          <td><b>id</b></td>
+          <td><b>product</b></td>
+          <td><b>measure</b></td>
+        </tr>
+        <tr ng-repeat="item in items|orderBy:'vendor_product_id'">
+          <td><input type="checkbox"></td>
+          <td>{{ item.product_stock_id }}</td>
+          <td>{{ item.product_name }}</td>
+          <td>{{ item.product_measure_name }}</td>
+        </tr>
+        </table>
+        
+        </td>
+
+      
+        <td width="50%" valign="top">
+
+        <!-- price changes -->
+        <table cellspacing="3" cellpadding="3">
+        <tr>
+          <td><b>move the prices by</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <select id="price_change_type" class="uiSmallText uiDdlCore" ng-model="price_change_type" ng-change="">
+              <option value="">Choose a price change type...</option>
+              <option value="1">by a fixed value</option>
+              <option value="2">by a fixed percentage</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><b>price change</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <input ng-model="price_change" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="5" />
+            <span class="uiSmallText uiMandatoryText">{{ _price_change_ErrorMessage }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>from</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <input ng-model="price_change_from" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="5" />
+            <span class="uiSmallText uiMandatoryText">{{ _price_change_from_ErrorMessage }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>to</b><span class="uiMandatoryText">*</span></td>
+          <td>
+            <input ng-model="price_change_to" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="5" />
+            <span class="uiSmallText uiMandatoryText">{{ _price_change_to_ErrorMessage }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p class="uiMandatoryText">CAUTION: Actioning this price change will add a new price record to all the selected products and cannot be undone.</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="">yes</button>
+            <button class="uiButtonBase uiButtonMedium uiButtonNo uiLargerText" ng-click="">no</button>
+            <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="">preview</button>
+          </td>
+        </tr>
+        </table>
+
+        </td>
+
+      </tr>
+
+
+      </table>
+
+
+	</div>
+
   </div>
 
 </div>
