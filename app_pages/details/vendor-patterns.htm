@@ -18,7 +18,7 @@
       </tr>
 
       <tr ng-repeat="item in items|orderBy:'pattern_name'">
-		<td>{{ item.id }}</td>
+		<td>{{ item.vendor_pattern_id }}</td>
 		<td>{{ item.pattern_name }}</td>
 		<td>{{ item.is_active === "1" ? "Yes" : "No"}}</td>
 		
@@ -49,6 +49,13 @@
         <td colspan="2"><span class="uiBannerText_BLACK">patterns</span></td>
       </tr>
 
+      <tr>
+        <td><b>id</b><span class="uiMandatoryText">*</span></td>
+        <td>
+          <input ng-model="vendor_pattern_id" class="uiFieldCore uiSmallText" type="text" maxlength="10" size="5" />
+          <span class="uiSmallText uiMandatoryText">{{ _vendor_pattern_id_ErrorMessage }}</span>
+        </td>
+      </tr>
       <tr>
         <td><b>pattern name</b><span class="uiMandatoryText">*</span></td>
         <td>

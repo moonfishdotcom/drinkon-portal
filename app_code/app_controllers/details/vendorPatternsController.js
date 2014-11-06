@@ -14,6 +14,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
   {
     $('#__id').val("0");
 
+    $scope.vendor_pattern_id = "";
     $scope.pattern_name = "";
 
     $scope._pattern_name_ErrorMessage = "";
@@ -36,6 +37,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
 
       $('#__id').val(itemData[0].id);
 
+      $scope.vendor_pattern_id = itemData[0].vendor_pattern_id;
       $scope.pattern_name = itemData[0].pattern_name;
 
       $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);      
@@ -55,6 +57,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_user_patterns";
 
+    var __vendor_pattern_id = $scope.vendor_pattern_id;
     var __pattern_name = $scope.pattern_name;
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
@@ -62,6 +65,30 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     $scope._pattern_name_ErrorMessage = "";
     
     var __canSaveData = 0;
+    var _itemCount = 0;
+
+
+    if (__vendor_pattern_id == "")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_pattern_id_ErrorMessage = "this field is mandatory";
+    }
+
+    //Check if the key value has already been used
+    angular.forEach($scope.items,function(value,index)
+    {
+      if (__vendor_pattern_id == value.vendor_pattern_id && __id != value.id)
+      {
+        _itemCount = _itemCount + 1;
+      }
+    })
+
+    if (_itemCount > 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._vendor_pattern_id_ErrorMessage = "this pattern id has already been used";
+	}
+
     
     if (__pattern_name == "")
     {
@@ -70,7 +97,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
     }
 
     //Check if the key value has already been used
-    var _itemCount = 0;
+    _itemCount = 0;
     angular.forEach($scope.items,function(value,index)
     {
       if (__pattern_name == value.pattern_name && __id != value.id)
@@ -95,6 +122,7 @@ drinkon.controller('vendorPatternsController', function($scope, dbRepository)
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
       form_json += '"vendor_id": "' + _vendor_id + '",';
+      form_json += '"vendor_pattern_id": "' + "'" + __vendor_pattern_id + "'" + '",';
       form_json += '"pattern_name": "' + __pattern_name + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
