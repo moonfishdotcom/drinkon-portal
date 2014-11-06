@@ -5,8 +5,50 @@
   <div style="float:left; width:100%;">
 	<div id="pagePanel">
 
-      <span>The vendor reports page will go here</span>
+      <table cellspacing="5" cellpadding="5" class="uiLargerText">
+      <tr>
+        <td colspan="3"><span class="uiBannerText_BLACK">reports</span></td>
+        <td align="right"><button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="newItem();" ng-show="false;">new</button></td>
+      </tr>
 
+      <tr>
+        <td><b>id</b></td>
+        <td><b>name</b></td>
+        <td><b>description</b></td>
+        <td><b>actions</b></td>
+      </tr>
+
+      <tr>
+        <td>1234</td>
+        <td>open orders for today</td>
+        <td>shows the headers for orders that are due today</td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="">run</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>1235</td>
+        <td>completed orders for this week</td>
+        <td>shows the header information and totals for orders that have been completed during this week</td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="">run</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>1236</td>
+        <td>all cancelled orders</td>
+        <td>shows information on all orders that have been cancelled</td>
+        <td>
+          <button class="uiButtonBase uiButtonMedium uiButtonEdit uiLargerText" ng-click="">run</button>
+        </td>
+      </tr>
+
+
+
+
+      </table>
 	</div>
   </div>
 
