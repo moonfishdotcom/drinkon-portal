@@ -3,11 +3,18 @@
 <div class="uiPageInnerContainer">
 
   <div style="float:left; width:100%;">
-	<div id="pagePanel">
+	<div id="pageEditPanel">
+
+      <form name="pageForm">
+      <input type="hidden" id="__id" value="0">
+      </form>
 
       <table width="100%" cellspacing="5" cellpadding="5" class="uiLargerText">
       <tr>
         <td colspan="1"><span class="uiBannerText_BLACK">system settings</span></td>
+        <td>
+          <div style="float:right;"><button class="uiButtonBase uiButtonMedium uiButtonYes uiLargerText" ng-click="saveItem(item.id);">save</button></div>
+        </td>
       </tr>
 
       <tr>
