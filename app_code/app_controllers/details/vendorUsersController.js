@@ -170,7 +170,7 @@ drinkon.controller('vendorUsersController', function($scope, dbRepository)
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
       form_json += '"vendor_id": "' + _vendor_id + '",';
-      form_json += '"vendor_user_id": "' + __vendor_user_id + '",';
+      form_json += '"vendor_user_id": "' + "'" + __vendor_user_id + "'" + '",';
       form_json += '"user_name": "' + __user_name + '",';
       form_json += '"user_known_as": "' + __user_known_as + '",';
       form_json += '"user_pattern_id": "' + __user_pattern_id + '",';

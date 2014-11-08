@@ -80,7 +80,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
     var __id = $('#__id').val();
     var __pt = "sys_products";
 
-    var __vendor_product_id = "'" + $scope.vendor_product_id + "'";
+    var __vendor_product_id = $scope.vendor_product_id;
     var __product_name = $scope.product_name;
     var __product_desc = $scope.product_desc;
 
@@ -166,7 +166,7 @@ drinkon.controller('vendorProductsController', function($scope, dbRepository)
       form_json += '"id": "' + __id + '",';
       form_json += '"pt": "' + __pt + '",';
       form_json += '"vendor_id": "' + _vendor_id + '",';
-      form_json += '"vendor_product_id": "' + __vendor_product_id + '",';
+      form_json += '"vendor_product_id": "' + "'" + __vendor_product_id + "'" + '",';
       form_json += '"product_name": "' + __product_name + '",';
       form_json += '"product_desc": "' + __product_desc + '",';
       form_json += '"product_type_id": "' + __product_type_id + '",';

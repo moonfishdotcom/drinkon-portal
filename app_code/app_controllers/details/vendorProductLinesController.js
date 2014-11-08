@@ -165,7 +165,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     var __product_unit_price = $scope.product_unit_price;
 
-    var __product_stock_id = "'" + $scope.product_stock_id + "'";
+    var __product_stock_id = $scope.product_stock_id;
 
     var __is_active = document.getElementById("is_active").checked ? "1" : "0";
 
@@ -243,7 +243,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       form_json += '"product_id": "' + __product_id + '",';
       form_json += '"product_measure_id": "' + __product_measure_id + '",';
       form_json += '"product_unit_price": "' + __product_unit_price + '",';
-      form_json += '"product_stock_id": "' + __product_stock_id + '",';
+      form_json += '"product_stock_id": "' + "'" + __product_stock_id + "'" + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
 
