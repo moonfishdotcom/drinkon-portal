@@ -11,43 +11,33 @@
       </tr>
 
       <tr>
-        <td width="33%" valign="top">
+        <td width="50%" valign="top">
         <!-- col 1 row 1 -->
-        <table cellspacing="2" cellpadding="2">
+        <table cellspacing="2" cellpadding="2" ng-show="true;">
         <tr>
           <td><span class="uiLargerText">ordering</span></td>
         </tr>
         <tr>
           <td><span class="uiNormalText">time slot</span></td>
           <td>
-            <select class="uiSmallText uiDdlCore" ng-model="timeslot_length">
-              <option value="0">Any</option>
-              <option value="5">5 mins</option>
-              <option value="10">10 mins</option>
-              <option value="15">15 mins</option>
-              <option value="20">20 mins</option>
-              <option value="25">25 mins</option>
-              <option value="30">30 mins</option>
+            <select class="uiSmallText uiDdlCore" ng-model="timeslot_length" ng-options="timeslot.timeslot_name for timeslot in timeslots">
+              <option value="">no timeslots</option>
             </select>
           </td>
         </tr>
         <tr>
           <td><span class="uiNormalText">max orders in time slot</span></td>
           <td>
-            <select class="uiSmallText uiDdlCore" ng-model="timeslot_maxorders">
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
+            <select class="uiSmallText uiDdlCore" ng-model="timeslot_maxorders" ng-options="maxorder.maxorders_name for maxorder in maxorders">
+              <option value="">no limit</option>
             </select>
           </td>
         </tr>
         <tr>
           <td><span class="uiNormalText">unaccepted order alert</span></td>
           <td>
-            <select class="uiSmallText uiDdlCore" ng-model="ordertogo_period">
-              <option value="5">5 mins</option>
-              <option value="10">10 mins</option>
-              <option value="15">15 mins</option>
+            <select class="uiSmallText uiDdlCore" ng-model="order_alert" ng-options="order_alert.order_alert_name for order_alert in order_alerts">
+              <option value="">no alert</option>
             </select>
             before
           </td>
@@ -56,47 +46,29 @@
         </table>
         </td>
 
-        <td width="33%" valign="top">
+        <td width="50%" valign="top">
         <!-- col 2 row 1 -->
-        <table cellspacing="2" cellpadding="2">
+        <table cellspacing="2" cellpadding="2" ng-show="true;">
         <tr>
           <td><span class="uiLargerText">social</span></td>
         </tr>
         <tr>
           <td><span class="uiNormalText">max review score</span></td>
           <td>
-            <select class="uiSmallText uiDdlCore" ng-model="review_maxscore">
-              <option value="5">5</option>
-              <option value="7">7</option>
-              <option value="9">9</option>
+            <select class="uiSmallText uiDdlCore" ng-model="review_maxscore" ng-options="review_maxscore.maxscore_name for review_maxscore in review_maxscores">
+              <option value="">no limit</option>
             </select>
           </td>
         </tr>
         <tr>
           <td><span class="uiNormalText">show the last</span></td>
           <td>
-            <select class="uiSmallText uiDdlCore" ng-model="review_showcount">
-              <option value="0">all</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
+            <select class="uiSmallText uiDdlCore" ng-model="review_showcount" ng-options="review_showcount.showcount_name for review_showcount in review_showcounts">
+              <option value="">show all</option>
             </select>
             reviews
           </td>
         </tr>
-        </table>
-        </td>
-
-        <td width="33%" valign="top">
-        <!-- col 3 row 1 -->
-        <table cellspacing="2" cellpadding="2">
-        <tr>
-          <td><span class="uiLargerText">home</span></td>
-        </tr>
-        <tr><td><input type="checkbox">show todays order totals</td></tr>
-        <tr><td><input type="checkbox">show current staff order totals</td></tr>
-
         </table>
         </td>
 
@@ -105,9 +77,9 @@
       <tr><td colspan="3" style="height:10px;">&nbsp;</td></tr>
 
       <tr>
-        <td width="33%" valign="top">
+        <td width="50%" valign="top">
         <!-- col 1 row 2 -->
-        <table cellspacing="2" cellpadding="2">
+        <table cellspacing="2" cellpadding="2" ng-show="false;">
         <tr>
           <td><span class="uiLargerText">column 1</span></td>
         </tr>
@@ -115,20 +87,11 @@
         </table>
         </td>
 
-        <td width="33%" valign="top">
+        <td width="50%" valign="top">
         <!-- col 2 row 2 -->
-        <table cellspacing="2" cellpadding="2">
+        <table cellspacing="2" cellpadding="2" ng-show="false;">
         <tr>
           <td><span class="uiLargerText">column 2</span></td>
-        </tr>
-        </table>
-        </td>
-
-        <td width="33%" valign="top">
-        <!-- col 3 row 2 -->
-        <table cellspacing="2" cellpadding="2">
-        <tr>
-          <td><span class="uiLargerText">column 3</span></td>
         </tr>
         </table>
         </td>
