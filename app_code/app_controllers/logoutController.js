@@ -3,6 +3,8 @@ drinkon.controller('logoutController', function($scope, dbRepository)
 //  var _vendor_id = "1";
   var _vendor_id = __cookie_vendor_id;
   
+  $scope.userListIsDisabled = true;
+
   dbRepository.getVendorUsers(_vendor_id, function(_error, _data)
   {
     $scope.users = _data.Data;
@@ -12,21 +14,27 @@ drinkon.controller('logoutController', function($scope, dbRepository)
 
   $scope.actionOnChange = function()
   {
-    $("#user_id").prop('disabled', true);
+    $scope.userListIsDisabled = true;
     
     var _action_id = $("#action_id").val();
     console.log(_action_id);
 
+    //no action
+    if (_action_id == null || _action_id == "")
+    {
+      $scope.userListIsDisabled = true;
+    }
+
     //Unassign
     if (_action_id == "1")
     {
-      $("#user_id").prop('disabled', true);
+      $scope.userListIsDisabled = true;
     }
 
     //Reassign
     if (_action_id == "2")
     {
-      $("#user_id").prop('disabled', false);
+      $scope.userListIsDisabled = false;
     }
 
   }
