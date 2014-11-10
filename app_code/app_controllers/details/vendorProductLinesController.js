@@ -62,18 +62,21 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       return item.id == itemData[0].product_measure_id;
     })[0];
 
-    $scope.product_unit_price = itemData[0].product_unit_price;
-
     $scope.product_stock_id = itemData[0].product_stock_id;
 
     $('#is_active').prop('checked', itemData[0].is_active == 1 ? true : false);
+    
+    //Clear the price line form
+    $scope.new_price_start = "";
+    $scope.new_price_end = "";
+    $scope.new_price = "";
+    $scope.new_price_desc = "";
   }
 
 
   $scope.productOnChange = function()
   {
     $("#product_measure_id").prop('disabled', false);
-    $("#product_unit_price").prop('disabled', false);
     $("#product_stock_id").prop('disabled', false);
 
     var _product_id = "0";
@@ -92,16 +95,13 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     $scope.product = null;
     $scope.product_measure = null;
-    $scope.product_unit_price = "";
     $scope.product_stock_id = "";
 
     $("#product_measure_id").prop('disabled', true);
-    $("#product_unit_price").prop('disabled', true);
     $("#product_stock_id").prop('disabled', true);
 
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
-    $scope._product_unit_price_ErrorMessage = "";
     $scope._product_stock_id_ErrorMessage = "";
     
     document.getElementById("pagePanel").style = "display:none;";
@@ -113,7 +113,6 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
   {
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
-    $scope._product_unit_price_ErrorMessage = "";
     $scope._product_stock_id_ErrorMessage = "";
 
     document.getElementById("pagePanel").style = "display:none;";
@@ -163,7 +162,6 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       __product_measure_id = $scope.product_measure.id;
 	}
 
-    var __product_unit_price = $scope.product_unit_price;
 
     var __product_stock_id = $scope.product_stock_id;
 
@@ -172,7 +170,6 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     //Check if we have any mandatory fields missing
     $scope._product_id_ErrorMessage = "";
     $scope._product_measure_id_ErrorMessage = "";
-    $scope._product_unit_price_ErrorMessage = "";
     $scope._product_stock_id_ErrorMessage = "";
     
     var __canSaveData = 0;
@@ -189,25 +186,7 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       $scope._product_measure_id_ErrorMessage = "you must choose a measure";
     }
 
-    if (__product_unit_price == "")
-    {
-      __canSaveData = __canSaveData + 1;
-      $scope._product_unit_price_ErrorMessage = "this field is mandatory";
-    }
-
-    if (isNaN(__product_unit_price) == true)
-    {
-      __canSaveData = __canSaveData + 1;
-      $scope._product_unit_price_ErrorMessage = "this field is not a number";
-    }
-
-    if (parseFloat(__product_unit_price) <= 0)
-    {
-      __canSaveData = __canSaveData + 1;
-      $scope._product_unit_price_ErrorMessage = "this field must be greater than zero";
-    }
-
-    if (__product_stock_id == "")
+    if (__product_stock_id == "" || __product_stock_id == "undefined")
     {
       __canSaveData = __canSaveData + 1;
       $scope._product_stock_id_ErrorMessage = "this field is mandatory";
@@ -242,7 +221,6 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       form_json += '"vendor_id": "' + __vendor_id + '",';
       form_json += '"product_id": "' + __product_id + '",';
       form_json += '"product_measure_id": "' + __product_measure_id + '",';
-      form_json += '"product_unit_price": "' + __product_unit_price + '",';
       form_json += '"product_stock_id": "' + "'" + __product_stock_id + "'" + '",';
       form_json += '"is_active": "' + __is_active + '" ';
       form_json += '}]}';
@@ -271,6 +249,8 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     $scope.new_price_end = "";
     $scope.new_price = "";
     $scope.new_price_desc = "";
+    
+    $scope._product_price_line_ErrorMessage = "";
   }
 
 
@@ -285,8 +265,33 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     var __product_price_desc = $scope.new_price_desc;
 
     //Check if we have any mandatory fields missing
-    
+    $scope._product_price_line_ErrorMessage = "";
     var __canSaveData = 0;
+
+    console.log(__product_price_start);
+    console.log(__product_price_end);
+    console.log(__product_unit_price);
+
+
+    if (__product_price_start == "" || __product_price_start == "undefined" ||
+        __product_price_end == "" || __product_price_end == "undefined" ||
+        __product_unit_price == "" || __product_unit_price == "undefined")
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_price_line_ErrorMessage = "you must enter a start date, an end date and a price";
+    }
+    
+    if (isNaN(__product_unit_price) == true)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_price_line_ErrorMessage = "the price does not appear to be a number";
+    }
+
+    if (parseFloat(__product_unit_price) <= 0)
+    {
+      __canSaveData = __canSaveData + 1;
+      $scope._product_price_line_ErrorMessage = "the price must be greater than zero";
+    }
 
     //Save the data if we have no validation issues
     if (__canSaveData == 0)
@@ -337,6 +342,8 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
   {
     console.log("Will delete id : ", _item_id);
 
+    var __product_line_id = $('#__id').val();
+    
     var __id = _item_id;
     var __pt = "sys_product_line_prices";
 
@@ -352,11 +359,18 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
       type: "POST", url: url,
       success: function (data, text) {
 
-        dbRepository.getVendorProductLinePrices(__id, function(_error, _data)
+        dbRepository.getVendorProductLinePrices(__product_line_id, function(_error, _data)
         {
           $scope.line_prices = _data.Data;
         });
 
+        $scope.new_price_start = "";
+        $scope.new_price_end = "";
+        $scope.new_price = "";
+        $scope.new_price_desc = "";
+
+        //window.location.href="#details/vendor-product-lines";
+          
       },
       error: function (request, status, error) {
         console.log(error);

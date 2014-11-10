@@ -85,13 +85,6 @@
           </td>
         </tr>
         <tr>
-          <td><b>unit price</b><span class="uiMandatoryText">*</span></td>
-          <td>
-            <input class="uiFieldCore uiSmallText" ng-model="product_unit_price" type="text" maxlength="5" size="5" />
-            <span class="uiSmallText uiMandatoryText">{{ _product_unit_price_ErrorMessage }}</span>
-          </td>
-        </tr>
-        <tr>
           <td><b>active</b></td>
           <td><input id="is_active" type="checkbox"></td>
         </tr>
@@ -126,6 +119,10 @@
             <button class="uiButtonBase uiButtonSmall uiButtonYes uiLargerText" ng-click="savePriceLine();">add</button>
             <button class="uiButtonBase uiButtonSmall uiButtonNo uiLargerText" ng-click="cancelPriceLine();">clear</button>
           </td>
+        </tr>
+        
+        <tr>
+          <td colspan="5"><span  class="uiSmallText uiMandatoryText">{{ _product_price_line_ErrorMessage }}</span></td>
         </tr>
 
         <tr ng-repeat="price in line_prices | orderBy:['-is_active','-product_price_end','product_price_start']"
