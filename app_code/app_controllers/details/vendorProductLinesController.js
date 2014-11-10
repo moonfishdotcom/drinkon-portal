@@ -106,6 +106,8 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
     
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
+    
+    document.getElementById("pageEditPicesPanel").style = "display:none;";
   }
 
 
@@ -117,6 +119,9 @@ drinkon.controller('vendorProductLinesController', function($scope, dbRepository
 
     document.getElementById("pagePanel").style = "display:none;";
     document.getElementById("pageEditPanel").style = "display:block;";
+
+    document.getElementById("pageEditPicesPanel").style = "display:block;";
+
 
     dbRepository.getVendorProductLinePrices(_item_id, function(_error, _data)
     {

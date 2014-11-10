@@ -21,8 +21,8 @@
         <td><b>actions</b></td>
       </tr>
 
-      <tr ng-repeat="item in items|orderBy:'vendor_product_id'">
-        <!-- <td>{{ item.vendor_product_id }}</td> -->
+      <tr ng-repeat="item in items|orderBy:'vendor_product_id'"
+          ng-class="{ 'uiMandatoryText': item.product_unit_price == null }">
         <td>{{ item.product_stock_id }}</td>
         <td>{{ item.product_name }}</td>
         <td>{{ item.product_measure_name }}</td>
@@ -101,7 +101,8 @@
 
       
         <td valign="top">
-        
+
+        <div id="pageEditPicesPanel" class="uiElementDisplayNone">        
         <table cellspacing="5" cellpadding="5">
         <tr>
           <td><b>start</b></td>
@@ -137,6 +138,7 @@
         </tr>
 
         </table>
+        </div>
 
         </td>      
 
